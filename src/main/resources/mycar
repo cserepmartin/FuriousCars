@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Cars>
+    <MyCar id="mycar">
+        <Description value=""/>
+        <Eval id="engine">1</Eval>
+        <Eval id="weight">1</Eval>
+        <Eval id="gear">1</Eval>
+        <Eval id="tires">1</Eval>
+    </MyCar>
+</Cars>
