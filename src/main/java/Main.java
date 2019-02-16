@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -41,7 +42,12 @@ public class Main {
                     store.storeDesign();
                     break;
                 case 3:
-                    System.out.println("Not implemented yet!");
+                    if(MyCar.money<300) {
+                        System.out.println("Sorry, but you don't have enough money for this!");
+                    } else {
+                        Race race = new Race();
+                        race.Racing();
+                    }
                     break;
                 default:
                     System.out.println("Please type a correct number!");
