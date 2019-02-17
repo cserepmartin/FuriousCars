@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Cars>
+    <MyCar>
+        <name>Guszti</name>
+        <color>Blue</color>
+        <engine>123</engine>
+        <gear>12</gear>
+        <tire>65</tire>
+        <weight>76</weight>
+    </MyCar>
+</Cars>

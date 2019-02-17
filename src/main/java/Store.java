@@ -4,6 +4,7 @@ public class Store {
     public static void storeDesign(){
         boolean notQuit = true;
         while (notQuit){
+            int choice = 312312;
             System.out.println("     |̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅|");
             System.out.println("     |       Store      |");
             System.out.println("     |̶̶̶̶̶̶̶̶̶̶̶̶̶̶̶̶̶̶|");
@@ -15,7 +16,11 @@ public class Store {
             System.out.println("        5. Respray car\n");
             Scanner userInput = new Scanner(System.in);
             System.out.print("Choose an option: ");
-            int choice = userInput.nextInt();
+            try {
+                choice = userInput.nextInt();
+            } catch (Exception e) {
+                choice = 435;
+            }
             switch (choice) {
                 case 0:
                     System.out.println("Thanks for visiting us!");
@@ -53,7 +58,7 @@ public class Store {
             } else {
                 MyCar.money -= MyCar.engine * 100;
                 MyCar.engine += 1;
-                System.out.printf("%s's engine is upgraded to level %s", MyCar.carName, MyCar.engine);
+                System.out.printf("%s's engine is upgraded to level %s\n", MyCar.carName, MyCar.engine);
             }
         } else {
             System.out.println("You already reached the maximum engine level! Congrats!");
@@ -66,7 +71,7 @@ public class Store {
             } else {
                 MyCar.money -= MyCar.gear*100;
                 MyCar.gear += 1;
-                System.out.printf("%s's engine is upgraded to level %s", MyCar.carName, MyCar.gear);
+                System.out.printf("%s's engine is upgraded to level %s\n", MyCar.carName, MyCar.gear);
             }
         } else {
             System.out.println("You already reached the maximum engine level! Congrats!");
@@ -79,7 +84,7 @@ public class Store {
             } else {
                 MyCar.money -= MyCar.weight * 100;
                 MyCar.weight += 1;
-                System.out.printf("%s's engine is upgraded to level %s", MyCar.carName, MyCar.weight);
+                System.out.printf("%s's engine is upgraded to level %s\n", MyCar.carName, MyCar.weight);
             }
         } else {
             System.out.println("You already reached the maximum engine level! Congrats!");
@@ -93,7 +98,7 @@ public class Store {
             } else {
                 MyCar.money -= MyCar.tires * 100;
                 MyCar.tires += 1;
-                System.out.printf("%s's engine is upgraded to level %s", MyCar.carName, MyCar.tires);
+                System.out.printf("%s's engine is upgraded to level %s\n", MyCar.carName, MyCar.tires);
             }
         } else {
             System.out.println("You already reached the maximum engine level! Congrats!");

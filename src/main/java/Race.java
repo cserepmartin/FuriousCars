@@ -7,7 +7,7 @@ public class Race  {
     }
     public int EnemyGenerator() {
         Random rand = new Random();
-        int enemyCarStat = rand.nextInt(25)+1;
+        int enemyCarStat = rand.nextInt(26)+1;
         return enemyCarStat;
     }
 
