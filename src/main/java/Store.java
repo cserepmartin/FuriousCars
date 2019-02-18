@@ -1,7 +1,11 @@
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Store {
-    public static void storeDesign(){
+    public static void storeDesign() throws IOException, SAXException, ParserConfigurationException {
         boolean notQuit = true;
         while (notQuit){
             int choice = 312312;
@@ -42,7 +46,13 @@ public class Store {
                     if(MyCar.money < 200){
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
-                        Respray();
+                        try {
+                            Respray();
+                            Main main = new Main();
+                            main.updateXML("mycar.xml");
+                        } catch (Exception e){
+                            System.out.println("");
+                        }
                     }
                     break;
                 default:

@@ -14,18 +14,18 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException{
-        Main.readCars("mycar.xml");
-        if (MyCar.carName == null) {
-            System.out.println("Name your car: ");
-            Scanner userInput = new Scanner(System.in);
-            String newCarName = userInput.nextLine();
-            MyCar.carName = newCarName;
-            mainMenu();
-        }else {
+        Main.readXML("mycar.xml");
+        if (MyCar.carName.length()==0) {
+                System.out.println("Name your car: ");
+                Scanner userInput = new Scanner(System.in);
+                String newCarName = userInput.nextLine();
+                MyCar.carName = newCarName;
+                mainMenu();
+            } else {
             mainMenu();
         }
     }
-    public static void mainMenu(){
+    public static void mainMenu() throws ParserConfigurationException, SAXException, IOException {
         boolean notQuit=true;
         while (notQuit)  {
             int choice = 1432;
@@ -73,7 +73,8 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Are you sure about that? | yes or no |");
-                    String inputString = userInput.nextLine();
+                    Scanner newUserInput = new Scanner(System.in);
+                    String inputString = newUserInput.nextLine();
                     if (inputString.toLowerCase().equals("yes")){
                         MyCar newGame = new MyCar();
                         newGame.NewGame();
@@ -88,72 +89,67 @@ public class Main {
             }
         }
     }
-    private static List<MyCar> readCars(String xmlFile) throws ParserConfigurationException, IOException, SAXException {
+    private static List<MyCar> readXML(String xmlFile) throws ParserConfigurationException, IOException, SAXException {
         List<MyCar> allCars = new ArrayList<>();
         InputStream is = Main.class.getResourceAsStream("/"+xmlFile);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document document = db.parse(is);
         Element documentElement = document.getDocumentElement();
-        List<Node> allCarNode = new ArrayList<>();
+        List<Element> allCarNode = new ArrayList<>();
         for (int i = 0; i < documentElement.getChildNodes().getLength(); i++) {
             Node node = documentElement.getChildNodes().item(i);
             if(node instanceof  Element){
-                allCarNode.add(node);
+                allCarNode.add((Element)node);
             }
         }
-        Node carNode = allCarNode.get(0);
-        for (int i = 0; i < carNode.getChildNodes().getLength(); i++) {
-            Node node = carNode.getChildNodes().item(i);
+        Element carElement = allCarNode.get(0);
+        MyCar.carName = carElement.getElementsByTagName("name").item(0).getTextContent();
+        MyCar.color = carElement.getElementsByTagName("color").item(0).getTextContent();
+        MyCar.money = Integer.parseInt(carElement.getElementsByTagName("money").item(0).getTextContent());
+        MyCar.engine = Integer.parseInt(carElement.getElementsByTagName("engine").item(0).getTextContent());
+        MyCar.gear = Integer.parseInt(carElement.getElementsByTagName("gear").item(0).getTextContent());
+        MyCar.weight = Integer.parseInt(carElement.getElementsByTagName("weight").item(0).getTextContent());
+        MyCar.tires = Integer.parseInt(carElement.getElementsByTagName("tire").item(0).getTextContent());
+        for (int i = 0; i < carElement.getChildNodes().getLength(); i++) {
+            Node node = carElement.getChildNodes().item(i);
             if(node instanceof Element) {
                 String name = ((Element) node).getTagName();
-                if ("name".equals(name)){
-                    System.out.println(node.getTextContent());
                 }
             }
-        }
-        Node carNameNode = carNode.getChildNodes().item(1);
-        if (carNameNode instanceof Element) {
-            String newCarName =((Element) carNameNode).getTagName();
-            if ("name".equals(newCarName)){
-                MyCar.carName=carNameNode.getTextContent();
+
+        return allCars;
+    }
+    public static List<MyCar> updateXML(String xmlFile) throws ParserConfigurationException, IOException, SAXException {
+        List<MyCar> allCars = new ArrayList<>();
+        InputStream is = Main.class.getResourceAsStream("/"+xmlFile);
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document document = db.parse(is);
+        Element documentElement = document.getDocumentElement();
+        List<Element> allCarNode = new ArrayList<>();
+        for (int i = 0; i < documentElement.getChildNodes().getLength(); i++) {
+            Node node = documentElement.getChildNodes().item(i);
+            if(node instanceof  Element){
+                allCarNode.add((Element)node);
             }
         }
-        Node carColorNode = carNode.getChildNodes().item(1);
-        if (carColorNode instanceof Element) {
-            String newCarColor =((Element) carColorNode).getTagName();
-            if ("color".equals(newCarColor)){
-                MyCar.carName=carColorNode.getTextContent();
+        Element carElement = allCarNode.get(0);
+        MyCar.carName = carElement.getElementsByTagName("name").item(0).getTextContent();
+        MyCar.color = carElement.getElementsByTagName("color").item(0).getTextContent();
+        MyCar.money = Integer.parseInt(carElement.getElementsByTagName("money").item(0).getTextContent());
+        MyCar.engine = Integer.parseInt(carElement.getElementsByTagName("engine").item(0).getTextContent());
+        MyCar.gear = Integer.parseInt(carElement.getElementsByTagName("gear").item(0).getTextContent());
+        MyCar.weight = Integer.parseInt(carElement.getElementsByTagName("weight").item(0).getTextContent());
+        MyCar.tires = Integer.parseInt(carElement.getElementsByTagName("tire").item(0).getTextContent());
+
+        for (int i = 0; i < carElement.getChildNodes().getLength(); i++) {
+            Node node = carElement.getChildNodes().item(i);
+            if(node instanceof Element) {
+                String name = ((Element) node).getTagName();
             }
         }
-        Node carEngineNode = carNode.getChildNodes().item(3);
-        if (carNameNode instanceof Element) {
-            String newCarName =((Element) carEngineNode).getTagName();
-            if ("engine".equals(newCarName)){
-                MyCar.engine = Integer.parseInt(carEngineNode.getNodeValue());
-            }
-        }
-        Node carGearNode = carNode.getChildNodes().item(4);
-        if (carGearNode instanceof Element) {
-            String newCarName =((Element) carGearNode).getTagName();
-            if ("gear".equals(newCarName)){
-                MyCar.gear = Integer.parseInt(carGearNode.getNodeValue());
-            }
-        }
-        Node carWeightNode = carNode.getChildNodes().item(5);
-        if (carWeightNode instanceof Element) {
-            String newCarName =((Element) carWeightNode).getTagName();
-            if ("weight".equals(newCarName)){
-                MyCar.weight=Integer.parseInt(carWeightNode.getNodeValue());
-            }
-        }
-        Node carTireNode = carNode.getChildNodes().item(6);
-        if (carTireNode instanceof Element) {
-            String newCarName =((Element) carTireNode).getTagName();
-            if ("tire".equals(newCarName)){
-                MyCar.tires=Integer.parseInt(carTireNode.getNodeValue());
-            }
-        }
+
         return allCars;
     }
 }
