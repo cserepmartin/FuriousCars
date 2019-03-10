@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Cars>
     <MyCar>
-        <name></name>
+        <name>Jóska</name>
         <color>Blue</color>
         <money>900</money>
         <engine>1</engine>

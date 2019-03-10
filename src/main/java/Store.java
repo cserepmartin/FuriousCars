@@ -5,63 +5,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Store {
-    public static void storeDesign() throws IOException, SAXException, ParserConfigurationException {
-        boolean notQuit = true;
-        while (notQuit){
-            int choice = 312312;
-            System.out.println("     |̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅|");
-            System.out.println("     |       Store      |");
-            System.out.println("     |̶̶̶̶̶̶̶̶̶̶̶̶̶̶̶̶̶̶|");
-            System.out.println("          0. Leave");
-            System.out.println("      1. Engine upgrade");
-            System.out.println("      2. Weight upgrade");
-            System.out.println("       3. Gear upgrade");
-            System.out.println("       4. Tire upgrade");
-            System.out.println("        5. Respray car\n");
-            Scanner userInput = new Scanner(System.in);
-            System.out.print("Choose an option: ");
-            try {
-                choice = userInput.nextInt();
-            } catch (Exception e) {
-                choice = 435;
-            }
-            switch (choice) {
-                case 0:
-                    System.out.println("Thanks for visiting us!");
-                    notQuit = false;
-                    break;
-                case 1:
-                    EngineUpgrade();
-                    break;
-                case 2:
-                    WeightUprgade();
-                    break;
-                case 3:
-                    GearUpgrade();
-                    break;
-                case 4:
-                    TireUpgrade();
-                    break;
-                case 5:
-                    if(MyCar.money < 200){
-                        System.out.println("Sorry, but you don't have enough money for this!");
-                    } else {
-                        try {
-                            Respray();
-                            Main main = new Main();
-                            main.updateXML("mycar.xml");
-                        } catch (Exception e){
-                            System.out.println("");
-                        }
-                    }
-                    break;
-                default:
-                    System.out.println("Please type a correct number!");
-            }
-        }
-    }
 
-    private static void EngineUpgrade() {
+
+    static void EngineUpgrade() {
         if (MyCar.engine < 5) {
             if(MyCar.money< MyCar.engine*100) {
                 System.out.println("Sorry, but you don't have enough money for this!");
@@ -74,7 +20,7 @@ public class Store {
             System.out.println("You already reached the maximum engine level! Congrats!");
         }
     }
-    private static void GearUpgrade() {
+    static void GearUpgrade() {
         if (MyCar.gear < 5) {
             if(MyCar.money< MyCar.gear*100) {
                 System.out.println("Sorry, but you don't have enough money for this!");
@@ -87,7 +33,7 @@ public class Store {
             System.out.println("You already reached the maximum engine level! Congrats!");
         }
     }
-    private static void WeightUprgade() {
+    static void WeightUprgade() {
         if (MyCar.weight < 5) {
             if(MyCar.money< MyCar.weight*100) {
                 System.out.println("Sorry, but you don't have enough money for this!");
@@ -101,7 +47,7 @@ public class Store {
         }
     }
 
-    private static void TireUpgrade() {
+    static void TireUpgrade() {
         if (MyCar.tires < 5) {
             if(MyCar.money< MyCar.gear*100) {
                 System.out.println("Sorry, but you don't have enough money for this!");
@@ -114,11 +60,8 @@ public class Store {
             System.out.println("You already reached the maximum engine level! Congrats!");
         }
     }
-    private static void Respray() {
-        System.out.println("       Select a color       ");
-        System.out.println("1. Black | 2. White | 3. Red");
-        System.out.println("4. Blue  | 5. Green | 6. Grey");
-        System.out.println("7. Cyan  | 8. Gold  | 9. Pink");
+    static void Respray() {
+
         Scanner userInput = new Scanner(System.in);
         int choice = userInput.nextInt();
         switch (choice) {
