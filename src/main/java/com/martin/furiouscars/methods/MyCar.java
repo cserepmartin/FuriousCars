@@ -1,13 +1,13 @@
-import java.util.Scanner;
+package com.martin.furiouscars.methods;
 
 public class MyCar {
-    static int money;
-    static String carName;
-    static String color;
-    static int engine ;
-    static int weight;
-    static int gear ;
-    static int tires ;
+    public static int money;
+    public static String carName;
+    public static String color;
+    public static int engine ;
+    public static int weight;
+    public static int gear ;
+    public static int tires ;
 
 
     public static int getMoney() {

@@ -1,13 +1,11 @@
-import org.xml.sax.SAXException;
+package com.martin.furiouscars.methods;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Store {
 
 
-    static void EngineUpgrade() {
+    public static void EngineUpgrade() {
         if (MyCar.engine < 5) {
             if(MyCar.money< MyCar.engine*100) {
                 System.out.println("Sorry, but you don't have enough money for this!");
@@ -20,7 +18,7 @@ public class Store {
             System.out.println("You already reached the maximum engine level! Congrats!");
         }
     }
-    static void GearUpgrade() {
+    public static void GearUpgrade() {
         if (MyCar.gear < 5) {
             if(MyCar.money< MyCar.gear*100) {
                 System.out.println("Sorry, but you don't have enough money for this!");
@@ -33,7 +31,7 @@ public class Store {
             System.out.println("You already reached the maximum engine level! Congrats!");
         }
     }
-    static void WeightUprgade() {
+    public static void WeightUprgade() {
         if (MyCar.weight < 5) {
             if(MyCar.money< MyCar.weight*100) {
                 System.out.println("Sorry, but you don't have enough money for this!");
@@ -47,7 +45,7 @@ public class Store {
         }
     }
 
-    static void TireUpgrade() {
+    public static void TireUpgrade() {
         if (MyCar.tires < 5) {
             if(MyCar.money< MyCar.gear*100) {
                 System.out.println("Sorry, but you don't have enough money for this!");
@@ -60,7 +58,7 @@ public class Store {
             System.out.println("You already reached the maximum engine level! Congrats!");
         }
     }
-    static void Respray() {
+    public static void Respray() {
 
         Scanner userInput = new Scanner(System.in);
         int choice = userInput.nextInt();

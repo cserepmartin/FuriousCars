@@ -1,3 +1,5 @@
+package com.martin.furiouscars.methods;
+
 import java.util.Random;
 
 public class Race  {
