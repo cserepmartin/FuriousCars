@@ -5,90 +5,99 @@ import java.util.Scanner;
 public class Store {
 
 
-    public static void EngineUpgrade() {
-        if (MyCar.engine < 5) {
-            if(MyCar.money< MyCar.engine*100) {
-                System.out.println("Sorry, but you don't have enough money for this!");
+    public Integer EngineUpgrade() {
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if (myCar.getEngine() < 5) {
+            if(myCar.getMoney()< myCar.getEngine()*100) {
+                XML.updateCarList(myCar.getMoney(),myCar.getCarName(),myCar.getColor(),myCar.getEngine(),myCar.getWeight(),myCar.getGear(),myCar.getTires());
+
+                return 0;
             } else {
-                MyCar.money -= MyCar.engine * 100;
-                MyCar.engine += 1;
-                System.out.printf("%s's engine is upgraded to level %s\n", MyCar.carName, MyCar.engine);
+                myCar.setMoney(myCar.getMoney()-(myCar.getEngine() * 100));
+                myCar.setEngine(myCar.getEngine()+1);
+                XML.updateCarList(myCar.getMoney(),myCar.getCarName(),myCar.getColor(),myCar.getEngine(),myCar.getWeight(),myCar.getGear(),myCar.getTires());
+                return 1;
             }
         } else {
-            System.out.println("You already reached the maximum engine level! Congrats!");
+
+            return 2;
         }
     }
-    public static void GearUpgrade() {
-        if (MyCar.gear < 5) {
-            if(MyCar.money< MyCar.gear*100) {
-                System.out.println("Sorry, but you don't have enough money for this!");
+    public Integer GearUpgrade() {
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if (myCar.getGear() < 5) {
+            if(myCar.getMoney()< myCar.getGear()*100) {
+                return 0;
             } else {
-                MyCar.money -= MyCar.gear*100;
-                MyCar.gear += 1;
-                System.out.printf("%s's engine is upgraded to level %s\n", MyCar.carName, MyCar.gear);
+                myCar.setMoney(myCar.getMoney()-(myCar.getGear()*100));
+                myCar.setGear(myCar.getGear()+1);
+                return 1;
             }
         } else {
-            System.out.println("You already reached the maximum engine level! Congrats!");
+            return 2;
         }
     }
-    public static void WeightUprgade() {
-        if (MyCar.weight < 5) {
-            if(MyCar.money< MyCar.weight*100) {
-                System.out.println("Sorry, but you don't have enough money for this!");
+    public Integer WeightUprgade() {
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if (myCar.getWeight() < 5) {
+            if(myCar.getMoney()< myCar.getWeight()*100) {
+                return 0;
             } else {
-                MyCar.money -= MyCar.weight * 100;
-                MyCar.weight += 1;
-                System.out.printf("%s's engine is upgraded to level %s\n", MyCar.carName, MyCar.weight);
+                myCar.setMoney(myCar.getMoney()-(myCar.getWeight()*100));
+                myCar.setWeight(myCar.getWeight()+1);
+                return 1;
             }
         } else {
-            System.out.println("You already reached the maximum engine level! Congrats!");
+            return 2;
         }
     }
 
-    public static void TireUpgrade() {
-        if (MyCar.tires < 5) {
-            if(MyCar.money< MyCar.gear*100) {
-                System.out.println("Sorry, but you don't have enough money for this!");
+    public Integer TireUpgrade() {
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if (myCar.getTires() < 5) {
+            if(myCar.getMoney() < myCar.getTires()*100) {
+                return 0;
             } else {
-                MyCar.money -= MyCar.tires * 100;
-                MyCar.tires += 1;
-                System.out.printf("%s's engine is upgraded to level %s\n", MyCar.carName, MyCar.tires);
+                myCar.setMoney(myCar.getMoney()-(myCar.getTires()*100));
+                myCar.setTires(myCar.getTires()+1);
+                return 1;
             }
         } else {
-            System.out.println("You already reached the maximum engine level! Congrats!");
+            return 2;
         }
     }
     public static void Respray() {
 
         Scanner userInput = new Scanner(System.in);
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
         int choice = userInput.nextInt();
         switch (choice) {
             case 1:
-                MyCar.color = "Black";
+                 myCar.setColor("Black");
                 break;
             case 2:
-                MyCar.color = "White";
+                myCar.setColor("White");
                 break;
             case 3:
-                MyCar.color = "Red";
+                myCar.setColor("Red");
                 break;
             case 4:
-                MyCar.color = "Blue";
+                myCar.setColor("Blue");
                 break;
             case 5:
-                MyCar.color = "Green";
+                myCar.setColor("Green");
                 break;
             case 6:
-                MyCar.color = "Grey";
+                myCar.setColor("Grey");
                 break;
             case 7:
-                MyCar.color = "Cyan";
+                myCar.setColor("Cyan");
                 break;
             case 8:
-                MyCar.color = "Gold";
+                myCar.setColor("Gold");
                 break;
             case 9:
-                MyCar.color = "Pink";
+                myCar.setColor("Pink");
                 break;
         }
     }

@@ -1,41 +1,84 @@
 package com.martin.furiouscars.methods;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyCar {
-    public static int money;
-    public static String carName;
-    public static String color;
-    public static int engine ;
-    public static int weight;
-    public static int gear ;
-    public static int tires ;
+
+    private int money;
+    private String carName;
+    private String color;
+    private int engine;
+    private int weight;
+    private int gear;
+    private int tires;
+    public static List cars = new ArrayList();
 
 
-    public static int getMoney() {
+    public MyCar(int money, String carName, String color, int engine, int weight, int gear, int tires) {
+        this.money = money;
+        this.carName = carName;
+        this.color = color;
+        this.engine = engine;
+        this.weight = weight;
+        this.gear = gear;
+        this.tires = tires;
+    }
+
+    public int getMoney() {
         return money;
     }
 
-    public static String getCarName() {
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public String getCarName() {
         return carName;
     }
 
-    public static String getColor() {
+    public void setCarName(String carName) {
+        this.carName = carName;
+    }
+
+    public String getColor() {
         return color;
     }
 
-    public static int getEngine() {
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getEngine() {
         return engine;
     }
 
-    public static int getWeight() {
+    public void setEngine(int engine) {
+        this.engine = engine;
+    }
+
+    public int getWeight() {
         return weight;
     }
 
-    public static int getGear() {
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getGear() {
         return gear;
     }
 
-    public static int getTires() {
+    public void setGear(int gear) {
+        this.gear = gear;
+    }
+
+    public int getTires() {
         return tires;
+    }
+
+    public void setTires(int tires) {
+        this.tires = tires;
     }
 
     public void NewGame(String newCarName){

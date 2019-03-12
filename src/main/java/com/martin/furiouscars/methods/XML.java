@@ -15,6 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XML {
+    public static void updateCarList (Integer money, String name, String color, Integer engine, Integer weight, Integer gear, Integer tire){
+        MyCar.cars.clear();
+        MyCar.cars.add(money);
+        MyCar.cars.add(name);
+        MyCar.cars.add(color);
+        MyCar.cars.add(engine);
+        MyCar.cars.add(weight);
+        MyCar.cars.add(gear);
+        MyCar.cars.add(tire);
+    }
     public static List<MyCar> readXML(String xmlFile) throws ParserConfigurationException, IOException, SAXException {
         List<MyCar> allCars = new ArrayList<>();
         InputStream is = Main.class.getResourceAsStream("/"+xmlFile);
@@ -30,13 +40,23 @@ public class XML {
             }
         }
         Element carElement = allCarNode.get(0);
-        MyCar.carName = carElement.getElementsByTagName("name").item(0).getTextContent();
-        MyCar.color = carElement.getElementsByTagName("color").item(0).getTextContent();
-        MyCar.money = Integer.parseInt(carElement.getElementsByTagName("money").item(0).getTextContent());
-        MyCar.engine = Integer.parseInt(carElement.getElementsByTagName("engine").item(0).getTextContent());
-        MyCar.gear = Integer.parseInt(carElement.getElementsByTagName("gear").item(0).getTextContent());
-        MyCar.weight = Integer.parseInt(carElement.getElementsByTagName("weight").item(0).getTextContent());
-        MyCar.tires = Integer.parseInt(carElement.getElementsByTagName("tire").item(0).getTextContent());
+        //Add to list
+        MyCar.cars.add(carElement.getElementsByTagName("money").item(0).getTextContent());
+        MyCar.cars.add(carElement.getElementsByTagName("name").item(0).getTextContent());
+        MyCar.cars.add(carElement.getElementsByTagName("color").item(0).getTextContent());
+        MyCar.cars.add(carElement.getElementsByTagName("engine").item(0).getTextContent());
+        MyCar.cars.add(carElement.getElementsByTagName("weight").item(0).getTextContent());
+        MyCar.cars.add(carElement.getElementsByTagName("gear").item(0).getTextContent());
+        MyCar.cars.add(carElement.getElementsByTagName("tire").item(0).getTextContent());
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        myCar.setCarName(carElement.getElementsByTagName("name").item(0).getTextContent());
+        myCar.setColor(carElement.getElementsByTagName("color").item(0).getTextContent());
+        myCar.setMoney(Integer.parseInt(carElement.getElementsByTagName("money").item(0).getTextContent()));
+        myCar.setEngine(Integer.parseInt(carElement.getElementsByTagName("engine").item(0).getTextContent()));
+        myCar.setGear(Integer.parseInt(carElement.getElementsByTagName("gear").item(0).getTextContent()));
+        myCar.setWeight(Integer.parseInt(carElement.getElementsByTagName("weight").item(0).getTextContent()));
+        myCar.setTires(Integer.parseInt(carElement.getElementsByTagName("tire").item(0).getTextContent()));
+
         for (int i = 0; i < carElement.getChildNodes().getLength(); i++) {
             Node node = carElement.getChildNodes().item(i);
             if(node instanceof Element) {
@@ -46,7 +66,7 @@ public class XML {
 
         return allCars;
     }
-    public static List<MyCar> updateXML(String xmlFile) throws ParserConfigurationException, IOException, SAXException {
+    /*public static List<MyCar> updateXML(String xmlFile) throws ParserConfigurationException, IOException, SAXException {
         List<MyCar> allCars = new ArrayList<>();
         InputStream is = Main.class.getResourceAsStream("/"+xmlFile);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -77,5 +97,5 @@ public class XML {
         }
 
         return allCars;
-    }
+    }*/
 }

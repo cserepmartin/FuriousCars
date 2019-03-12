@@ -4,40 +4,44 @@ public class Garage {
 
 
     public static Integer SellEngine() {
-        if (MyCar.engine > 1) {
-                MyCar.money += MyCar.engine * 50;
-                MyCar.engine -= 1;
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if (myCar.getMoney() > 1) {
+                myCar.setMoney(myCar.getMoney()+(myCar.getEngine()*50));
+                myCar.setEngine(myCar.getEngine()-1);
                 return 1;
         } else {
-            return 0;
+            return 2;
         }
     }
     public static Integer SellGear() {
-        if (MyCar.gear > 1) {
-                MyCar.money += MyCar.gear*100;
-                MyCar.gear -= 1;
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if (myCar.getGear() > 1) {
+            myCar.setMoney(myCar.getMoney()+(myCar.getGear()*50));
+            myCar.setGear(myCar.getGear()-1);
                 return 1;
         } else {
-            return 0;
+            return 2;
         }
     }
     public static Integer SellWeight() {
-        if (MyCar.weight > 1) {
-                MyCar.money += MyCar.weight * 100;
-                MyCar.weight -= 1;
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if (myCar.getWeight() > 1) {
+            myCar.setMoney(myCar.getMoney()+(myCar.getWeight()*50));
+            myCar.setWeight(myCar.getWeight()-1);
                 return 1;
         } else {
-            return 0;
+            return 2;
         }
     }
 
     public static Integer SellTire() {
-        if (MyCar.tires > 1) {
-                MyCar.money += MyCar.tires * 50;
-                MyCar.tires -= 1;
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if (myCar.getTires() > 1) {
+            myCar.setMoney(myCar.getMoney()+(myCar.getTires()*50));
+            myCar.setTires(myCar.getTires()-1);
                 return 1;
         } else {
-            return 0;
+            return 2;
         }
     }
 }

@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class StoreDesign {
     public static void storeDesign() throws IOException, SAXException, ParserConfigurationException {
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
         boolean notQuit = true;
         while (notQuit){
             int choice = 312312;
@@ -38,19 +39,19 @@ public class StoreDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    store.EngineUpgrade();
+                    printEningeResult(store.EngineUpgrade());
                     break;
                 case 2:
-                    store.WeightUprgade();
+                    printWeightResult(store.WeightUprgade());
                     break;
                 case 3:
-                    store.GearUpgrade();
+                    printGearResult(store.GearUpgrade());
                     break;
                 case 4:
-                    store.TireUpgrade();
+                    printTireResult(store.TireUpgrade());
                     break;
                 case 5:
-                    if(MyCar.money < 200){
+                    if(myCar.getMoney() < 200){
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         try {
@@ -68,6 +69,46 @@ public class StoreDesign {
                 default:
                     System.out.println("Please type a correct number!");
             }
+        }
+    }
+    public static void printEningeResult(Integer result){
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if(result == 0){
+            System.out.println("Sorry, but you don't have enough money for this!");
+        } else if(result == 1){
+            System.out.printf("%s's engine is upgraded to level %s\n", myCar.getCarName(),myCar.getEngine());
+        } else if(result == 2){
+            System.out.println("You already reached the maximum engine level! Congrats!");
+        }
+    }
+    public static void printWeightResult(Integer result){
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if(result == 0){
+            System.out.println("Sorry, but you don't have enough money for this!");
+        } else if(result == 1){
+            System.out.printf("%s's weight level is upgraded to level %s\n", myCar.getCarName(),myCar.getWeight());
+        } else if(result == 2){
+            System.out.println("You already reached the maximum weight level! Congrats!");
+        }
+    }
+    public static void printGearResult(Integer result){
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if(result == 0){
+            System.out.println("Sorry, but you don't have enough money for this!");
+        } else if(result == 1){
+            System.out.printf("%s's gear is upgraded to level %s\n", myCar.getCarName(),myCar.getGear());
+        } else if(result == 2){
+            System.out.println("You already reached the maximum gear level! Congrats!");
+        }
+    }
+    public static void printTireResult(Integer result){
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        if(result == 0){
+            System.out.println("Sorry, but you don't have enough money for this!");
+        } else if(result == 1){
+            System.out.printf("%s's tires is upgraded to level %s\n", myCar.getCarName(),myCar.getTires());
+        } else if(result == 2){
+            System.out.println("You already reached the maximum tire level! Congrats!");
         }
     }
 }

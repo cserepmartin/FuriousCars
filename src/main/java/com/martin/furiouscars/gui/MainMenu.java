@@ -11,6 +11,7 @@ public class MainMenu {
     public static void mainMenu() throws ParserConfigurationException, SAXException, IOException {
         boolean notQuit=true;
         while (notQuit)  {
+            MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
             int choice = 127;
 
             Scanner userInput = new Scanner(System.in);
@@ -45,20 +46,12 @@ public class MainMenu {
                     GarageDesign.SellParts();
                     break;
                 case 4:
-                    if(MyCar.money<300) {
+                    if(myCar.getMoney()<300) {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         Race race = new Race();
                         int result = race.Racing();
-                        if(result == 1){
-                            System.out.println("You win!");
-                            System.out.printf("Current balance: $%s\n", MyCar.getMoney());
-                        } else if(result == 2){
-                            System.out.println("You lose!");
-                            System.out.printf("Current balance: $%s\n", MyCar.getMoney());
-                        } else if(result == 10){
-                            System.out.println("It's a draw!");
-                        }
+                        RaceDesign.printRaceResult(result);
                     }
                     break;
                 case 5:
@@ -66,9 +59,9 @@ public class MainMenu {
                     Scanner newUserInput = new Scanner(System.in);
                     String inputString = newUserInput.nextLine();
                     if (inputString.toLowerCase().equals("yes")){
-                        MyCar newGame = new MyCar();
+
                         String newCarName = newUserInput.nextLine();
-                        newGame.NewGame(newCarName);
+                        myCar.NewGame(newCarName);
                     } else {
                         System.out.println("Okay!");
                     }
