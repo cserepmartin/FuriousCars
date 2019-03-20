@@ -1,4 +1,4 @@
-package com.martin.furiouscars.methods;
+/*package com.martin.furiouscars.methods;
 
 import com.martin.furiouscars.Main;
 import org.w3c.dom.Document;
@@ -110,3 +110,4 @@ public class XML {
         return allCars;
     }
 }
+*/

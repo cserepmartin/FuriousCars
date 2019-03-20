@@ -9,47 +9,57 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RaceDesign {
     public static void raceMenu() throws ParserConfigurationException, SAXException, IOException {
-        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+
         boolean notQuit = true;
         while (notQuit){
-            int choice = 312312;
+            Scanner userInput = new Scanner(System.in);
+            try {
+                String carName = userInput.nextLine();
+                System.out.println("ASDASD");
+                MyCar myCar = new MyCar(carName,MyCar.allCar.get(carName));
+            } catch (Exception e) {
+                continue;
+            }
+            int choice;
+            String carName = null;
             System.out.println("     ___________________");
             System.out.println("     |                 |");
-            System.out.println("     |      Garage     |");
+            System.out.println("     |       Race      |");
             System.out.println("     |_________________|");
             System.out.println("          0. Leave");
             System.out.println("        1. Drag Race");
             System.out.println("       2. Visual Race\n");
-            Scanner userInput = new Scanner(System.in);
             System.out.print("Choose an option: ");
             try {
                 choice = userInput.nextInt();
-            } catch (Exception e) {
-                choice = 435;
+            } catch (InputMismatchException e) {
+                System.out.println("Please type an integer: " + e.getMessage());
+                continue;
             }
             switch (choice) {
                 case 0:
                     notQuit = false;
                     break;
                 case 1:
-                    if(myCar.getMoney()<300) {
+                    if(MyCar.money<300) {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         Race dragRace = new Race();
-                        int result = dragRace.Racing();
+                        int result = dragRace.Racing(carName);
                         RaceDesign.printRaceResult(result);
                     }
                     break;
                 case 2:
-                    if(myCar.getMoney()<100) {
+                    if(MyCar.money<100) {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         VisualRace visualRace = new VisualRace();
-                        printVRaceResult(visualRace.vRace(visualRace.booleanGenerator()));
+                        printVRaceResult(visualRace.vRace(visualRace.booleanGenerator()),carName);
                     }
                     break;
                 default:
@@ -59,26 +69,27 @@ public class RaceDesign {
     }
     public static void printRaceResult(Integer result){
 
-        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        Scanner userInput = new Scanner(System.in);
+        String carName = userInput.nextLine();
         if(result == 1){
             System.out.println("You win!");
-            System.out.printf("Current balance: $%s\n", myCar.getMoney());
+            System.out.printf("Current balance: $%s\n", MyCar.money);
         } else if(result == 2){
             System.out.println("You lose!");
-            System.out.printf("Current balance: $%s\n", myCar.getMoney());
+            System.out.printf("Current balance: $%s\n", MyCar.money);
         } else if(result == 10){
             System.out.println("It's a draw!");
         }
     }
-    public static void printVRaceResult(boolean result) {
+    public static void printVRaceResult(boolean result,String carName) {
 
-        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()), MyCar.cars.get(1).toString(), MyCar.cars.get(2).toString(), Integer.parseInt(MyCar.cars.get(3).toString()), Integer.parseInt(MyCar.cars.get(4).toString()), Integer.parseInt(MyCar.cars.get(5).toString()), Integer.parseInt(MyCar.cars.get(6).toString()));
+        MyCar myCar = new MyCar(carName,MyCar.allCar.get(carName));
         if (result) {
             System.out.println("You win!");
-            System.out.printf("Current balance: $%s\n", myCar.getMoney());
+            System.out.printf("Current balance: $%s\n", MyCar.money);
         } else {
             System.out.println("You lose!");
-            System.out.printf("Current balance: $%s\n", myCar.getMoney());
+            System.out.printf("Current balance: $%s\n", MyCar.money);
         }
     }
 }

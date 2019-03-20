@@ -12,9 +12,8 @@ public class MainMenu {
     public static void mainMenu() throws ParserConfigurationException, SAXException, IOException {
         boolean notQuit=true;
         while (notQuit)  {
-            MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
             int choice;
-
+            String carName = null;
             Scanner userInput = new Scanner(System.in);
             System.out.println("     ____________________");
             System.out.println("     |                  |");
@@ -40,7 +39,7 @@ public class MainMenu {
                     System.exit(1);
                     break;
                 case 1:
-                    CarDataDesign.printCarDatas();
+                    CarDataDesign.printCarDatas(carName);
                     break;
                 case 2:
                     StoreDesign.storeDesign();
@@ -58,10 +57,7 @@ public class MainMenu {
                     if (inputString.toLowerCase().equals("yes")){
                         System.out.printf("Give a name for your new car: ");
                         String newCarName = newUserInput.nextLine();
-                        System.out.printf("Paint it!");
-                        ResprayDesign resprayDesign = new ResprayDesign();
-                        String newCarColor = Respray.Respray(resprayDesign.printRespayMenu());
-                        myCar.NewGame(newCarName,newCarColor);
+                        MyCar.NewGame(newCarName);
                     } else {
                         System.out.println("Okay!");
                     }
