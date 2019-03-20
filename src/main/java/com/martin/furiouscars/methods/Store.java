@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Store {
 
 
-    public Integer EngineUpgrade(String carName) {
+    public Integer EngineUpgrade(Integer index) {
         //boolean notReady = true;
         //while (notReady){
-            MyCar myCar = new MyCar(carName, MyCar.allCar.get(carName));
+        MyCar myCar = (MyCar) MyCar.cars.get(index);
             if (myCar.getEngine() < 5) {
                 if (MyCar.money < myCar.getEngine() * 100) {
 

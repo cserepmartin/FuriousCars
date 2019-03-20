@@ -9,8 +9,8 @@ import java.util.Random;
 public class Race  {
     int enemyCarStat;
     int myCarStat;
-    public int OverallCarData(String carName) {
-        MyCar myCar = new MyCar("",MyCar.allCar.get(carName));
+    public int OverallCarData(Integer index) {
+        MyCar myCar = (MyCar) MyCar.cars.get(index);
         myCarStat = myCar.getEngine();
         return myCarStat;
     }
@@ -31,9 +31,9 @@ public class Race  {
 
     }
 
-    public Integer Racing(String carName) throws IOException, SAXException, ParserConfigurationException {
+    public Integer Racing(Integer index) throws IOException, SAXException, ParserConfigurationException {
         EnemyGenerator();
-        OverallCarData(carName);
+        OverallCarData(index);
         if(myCarStat>enemyCarStat) {
            MyCar.money +=300;
             return 1;

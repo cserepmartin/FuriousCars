@@ -31,6 +31,8 @@ public class GarageDesign {
                     notQuit = false;
                     break;
                 case 1:
+                    String newCarName = userInput.nextLine();
+                    Garage garage = new Garage();
 
                     break;
                 case 2:

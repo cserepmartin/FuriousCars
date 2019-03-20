@@ -13,10 +13,11 @@ public class StoreDesign {
     public static void storeDesign() throws IOException, SAXException, ParserConfigurationException {
         boolean notQuit = true;
         while (notQuit){
-            System.out.println(MyCar.cars);
+            System.out.println(MyCar.cars.get(0));
             Scanner userInput = new Scanner(System.in);
             String carName = userInput.nextLine();
-            MyCar myCar = new MyCar(carName,MyCar.allCar.get(carName));
+            Integer index = MyCar.cars.indexOf(carName);
+            MyCar myCar = (MyCar) MyCar.cars.get(index);
 
             int choice;
             Store store = new Store();
@@ -39,7 +40,7 @@ public class StoreDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    printEningeResult(store.EngineUpgrade(carName));
+                    printEningeResult(store.EngineUpgrade(index));
                     break;
 
                 default:

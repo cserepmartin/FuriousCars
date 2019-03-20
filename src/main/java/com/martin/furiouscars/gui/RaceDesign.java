@@ -17,11 +17,14 @@ public class RaceDesign {
 
         boolean notQuit = true;
         while (notQuit){
+            int index;
             Scanner userInput = new Scanner(System.in);
             try {
+                System.out.println("Car name: ");
                 String carName = userInput.nextLine();
-                System.out.println("ASDASD");
-                MyCar myCar = new MyCar(carName,MyCar.allCar.get(carName));
+                index = MyCar.cars.indexOf(carName);
+                MyCar myCar = (MyCar) MyCar.cars.get(index);
+
             } catch (Exception e) {
                 continue;
             }
@@ -50,7 +53,7 @@ public class RaceDesign {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         Race dragRace = new Race();
-                        int result = dragRace.Racing(carName);
+                        int result = dragRace.Racing(index);
                         RaceDesign.printRaceResult(result);
                     }
                     break;
