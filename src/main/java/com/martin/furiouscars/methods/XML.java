@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class XML {
     public static void updateCarList (Integer money, String name, String color, Integer engine, Integer weight, Integer gear, Integer tire){
@@ -66,7 +69,7 @@ public class XML {
 
         return allCars;
     }
-    /*public static List<MyCar> updateXML(String xmlFile) throws ParserConfigurationException, IOException, SAXException {
+    public static List<MyCar> updateXML(String xmlFile) throws ParserConfigurationException, IOException, SAXException {
         List<MyCar> allCars = new ArrayList<>();
         InputStream is = Main.class.getResourceAsStream("/"+xmlFile);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -81,13 +84,21 @@ public class XML {
             }
         }
         Element carElement = allCarNode.get(0);
-        MyCar.carName = carElement.getElementsByTagName("name").item(0).getTextContent();
-        MyCar.color = carElement.getElementsByTagName("color").item(0).getTextContent();
-        MyCar.money = Integer.parseInt(carElement.getElementsByTagName("money").item(0).getTextContent());
-        MyCar.engine = Integer.parseInt(carElement.getElementsByTagName("engine").item(0).getTextContent());
-        MyCar.gear = Integer.parseInt(carElement.getElementsByTagName("gear").item(0).getTextContent());
-        MyCar.weight = Integer.parseInt(carElement.getElementsByTagName("weight").item(0).getTextContent());
-        MyCar.tires = Integer.parseInt(carElement.getElementsByTagName("tire").item(0).getTextContent());
+        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
+        carElement.getElementsByTagName("name").item(0);
+        carElement.setTextContent(myCar.getCarName());
+        carElement.getElementsByTagName("color").item(0);
+        carElement.setTextContent(myCar.getColor());
+        carElement.getElementsByTagName("money").item(0);
+        carElement.setTextContent(String.valueOf(myCar.getMoney()));
+        carElement.getElementsByTagName("engine").item(0);
+        carElement.setTextContent(String.valueOf(myCar.getEngine()));
+        carElement.getElementsByTagName("gear").item(0);
+        carElement.setTextContent(String.valueOf(myCar.getGear()));
+        carElement.getElementsByTagName("weight").item(0);
+        carElement.setTextContent(String.valueOf(myCar.getWeight()));
+        carElement.getElementsByTagName("tire").item(0);
+        carElement.setTextContent(String.valueOf(myCar.getTires()));
 
         for (int i = 0; i < carElement.getChildNodes().getLength(); i++) {
             Node node = carElement.getChildNodes().item(i);
@@ -97,5 +108,5 @@ public class XML {
         }
 
         return allCars;
-    }*/
+    }
 }

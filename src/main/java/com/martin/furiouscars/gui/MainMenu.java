@@ -4,6 +4,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import com.martin.furiouscars.methods.*;
 
@@ -12,7 +13,7 @@ public class MainMenu {
         boolean notQuit=true;
         while (notQuit)  {
             MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
-            int choice = 127;
+            int choice;
 
             Scanner userInput = new Scanner(System.in);
             System.out.println("     ____________________");
@@ -28,9 +29,11 @@ public class MainMenu {
             System.out.print("\nChoose an option: ");
             try {
                 choice = userInput.nextInt();
-            } catch (Exception e) {
-                choice = 435;
+            } catch (InputMismatchException e) {
+                System.out.println("Please type an integer: " + e.getMessage());
+                continue;
             }
+
             switch (choice) {
                 case 0:
                     System.out.println("Thanks for playing. Bye");
@@ -46,28 +49,25 @@ public class MainMenu {
                     GarageDesign.SellParts();
                     break;
                 case 4:
-                    if(myCar.getMoney()<300) {
-                        System.out.println("Sorry, but you don't have enough money for this!");
-                    } else {
-                        Race race = new Race();
-                        int result = race.Racing();
-                        RaceDesign.printRaceResult(result);
-                    }
+                    RaceDesign.raceMenu();
                     break;
                 case 5:
                     System.out.println("Are you sure about that? | yes or no |");
                     Scanner newUserInput = new Scanner(System.in);
                     String inputString = newUserInput.nextLine();
                     if (inputString.toLowerCase().equals("yes")){
-
+                        System.out.printf("Give a name for your new car: ");
                         String newCarName = newUserInput.nextLine();
-                        myCar.NewGame(newCarName);
+                        System.out.printf("Paint it!");
+                        ResprayDesign resprayDesign = new ResprayDesign();
+                        String newCarColor = Respray.Respray(resprayDesign.printRespayMenu());
+                        myCar.NewGame(newCarName,newCarColor);
                     } else {
                         System.out.println("Okay!");
                     }
                     break;
                 default:
-                    System.out.println("Please type a correct number!");
+                    System.out.println("No such option: " + choice);
                     break;
 
             }

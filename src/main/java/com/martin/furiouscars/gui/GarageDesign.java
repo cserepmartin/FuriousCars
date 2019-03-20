@@ -9,8 +9,8 @@ public class GarageDesign {
         MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
         boolean notQuit = true;
         while (notQuit){
-            Garage garage = new Garage();
-            int choice = 312312;
+
+            /*int choice = 312312;
             System.out.println("     ___________________");
             System.out.println("     |                 |");
             System.out.println("     |      Garage     |");
@@ -45,7 +45,7 @@ public class GarageDesign {
                     break;
                 default:
                     System.out.println("Please type a correct number!");
-            }
+            }*/
         }
     }
     public static void printEningeResult(Integer result){

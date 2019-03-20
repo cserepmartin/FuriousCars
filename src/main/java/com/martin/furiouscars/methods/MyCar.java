@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MyCar {
 
-    private int money;
+    public int money;
     private String carName;
     private String color;
     private int engine;
@@ -81,14 +81,25 @@ public class MyCar {
         this.tires = tires;
     }
 
-    public void NewGame(String newCarName){
+    public void NewGame(String newCarName, String newCarColor){
         money = 900;
-        carName = null;
-        color = newCarName;
+        carName = newCarName;
+        color = newCarColor;
         engine = 1;
         weight = 1;
         gear = 1;
         tires = 1;
-        System.exit(1);
+        XML.updateCarList(money,carName,color,engine,weight,gear,tires);
+    }
+    public void buyCar(String newCarName, String newCarColor){
+        cars.add();
+        money = 900;
+        carName = newCarName;
+        color = newCarColor;
+        engine = 1;
+        weight = 1;
+        gear = 1;
+        tires = 1;
+        XML.updateCarList(money,carName,color,engine,weight,gear,tires);
     }
 }

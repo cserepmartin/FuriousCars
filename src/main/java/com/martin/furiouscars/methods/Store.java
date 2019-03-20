@@ -66,41 +66,7 @@ public class Store {
             return 2;
         }
     }
-    public static void Respray() {
 
-        Scanner userInput = new Scanner(System.in);
-        MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
-        int choice = userInput.nextInt();
-        switch (choice) {
-            case 1:
-                 myCar.setColor("Black");
-                break;
-            case 2:
-                myCar.setColor("White");
-                break;
-            case 3:
-                myCar.setColor("Red");
-                break;
-            case 4:
-                myCar.setColor("Blue");
-                break;
-            case 5:
-                myCar.setColor("Green");
-                break;
-            case 6:
-                myCar.setColor("Grey");
-                break;
-            case 7:
-                myCar.setColor("Cyan");
-                break;
-            case 8:
-                myCar.setColor("Gold");
-                break;
-            case 9:
-                myCar.setColor("Pink");
-                break;
-        }
-    }
 
 
 

@@ -2,7 +2,9 @@ package com.martin.furiouscars.gui;
 
 import com.martin.furiouscars.Main;
 import com.martin.furiouscars.methods.MyCar;
+import com.martin.furiouscars.methods.Respray;
 import com.martin.furiouscars.methods.Store;
+import com.martin.furiouscars.methods.XML;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -55,12 +57,8 @@ public class StoreDesign {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         try {
-                            System.out.println("       Select a color       ");
-                            System.out.println("1. Black | 2. White | 3. Red");
-                            System.out.println("4. Blue  | 5. Green | 6. Grey");
-                            System.out.println("7. Cyan  | 8. Gold  | 9. Pink");
-                            store.Respray();
-                            //Main.updateXML("mycar.xml");
+                            ResprayDesign resprayDesign = new ResprayDesign();
+                            Respray.Respray(resprayDesign.printRespayMenu());
                         } catch (Exception e){
                             System.out.println("");
                         }

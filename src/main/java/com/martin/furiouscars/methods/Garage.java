@@ -1,9 +1,23 @@
 package com.martin.furiouscars.methods;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Garage {
 
+    private List<MyCar> allCar = new ArrayList<>();
 
-    public static Integer SellEngine() {
+    public List<MyCar> getAllCar() {
+        return allCar;
+    }
+
+    public void buyCar(String newCarName, String newCarColor){
+        allCar.add(new MyCar(900,newCarName,newCarColor,1,1,1,1));
+
+    }
+
+    //Sell Parts
+    /*public static Integer SellEngine() {
         MyCar myCar = new MyCar(Integer.parseInt(MyCar.cars.get(0).toString()),MyCar.cars.get(1).toString(),MyCar.cars.get(2).toString(),Integer.parseInt(MyCar.cars.get(3).toString()),Integer.parseInt(MyCar.cars.get(4).toString()),Integer.parseInt(MyCar.cars.get(5).toString()),Integer.parseInt(MyCar.cars.get(6).toString()));
         if (myCar.getMoney() > 1) {
                 myCar.setMoney(myCar.getMoney()+(myCar.getEngine()*50));
@@ -43,5 +57,5 @@ public class Garage {
         } else {
             return 2;
         }
-    }
+    }*/
 }
