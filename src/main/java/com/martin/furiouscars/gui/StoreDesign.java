@@ -1,5 +1,6 @@
 package com.martin.furiouscars.gui;
 
+import com.martin.furiouscars.methods.Garage;
 import com.martin.furiouscars.methods.MyCar;
 import com.martin.furiouscars.methods.Store;
 import org.xml.sax.SAXException;
@@ -16,8 +17,8 @@ public class StoreDesign {
             System.out.println(MyCar.cars.get(0));
             Scanner userInput = new Scanner(System.in);
             String carName = userInput.nextLine();
-            Integer index = MyCar.cars.indexOf(carName);
-            MyCar myCar = (MyCar) MyCar.cars.get(index);
+            Garage garage = new Garage();
+            MyCar myCar = garage.findCarByName(MyCar.cars,carName);
 
             int choice;
             Store store = new Store();
@@ -40,7 +41,7 @@ public class StoreDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    printEningeResult(store.EngineUpgrade(index));
+                    printEningeResult(store.EngineUpgrade(carName));
                     break;
 
                 default:

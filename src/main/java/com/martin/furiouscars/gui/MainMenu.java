@@ -39,7 +39,10 @@ public class MainMenu {
                     System.exit(1);
                     break;
                 case 1:
-                    CarDataDesign.printCarDatas(carName);
+                    Scanner carNameUserInput = new Scanner(System.in);
+                    String newCarName = carNameUserInput.nextLine();
+                    Integer index = MyCar.cars.indexOf(newCarName);
+                    CarDataDesign.printCarDatas(newCarName,index);
                     break;
                 case 2:
                     StoreDesign.storeDesign();
@@ -56,8 +59,8 @@ public class MainMenu {
                     String inputString = newUserInput.nextLine();
                     if (inputString.toLowerCase().equals("yes")){
                         System.out.printf("Give a name for your new car: ");
-                        String newCarName = newUserInput.nextLine();
-                        MyCar.NewGame(newCarName);
+                        String newGameCarName = newUserInput.nextLine();
+                        MyCar.NewGame(newGameCarName);
                     } else {
                         System.out.println("Okay!");
                     }

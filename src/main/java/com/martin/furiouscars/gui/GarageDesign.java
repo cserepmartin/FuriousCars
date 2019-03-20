@@ -31,9 +31,11 @@ public class GarageDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    String newCarName = userInput.nextLine();
+                    System.out.printf("asd\n");
+                    Scanner carNameUserInput = new Scanner(System.in);
+                    String newCarName = carNameUserInput.nextLine();
                     Garage garage = new Garage();
-
+                    garage.buyCar(newCarName);
                     break;
                 case 2:
 

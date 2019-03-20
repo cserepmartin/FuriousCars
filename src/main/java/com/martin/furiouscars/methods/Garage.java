@@ -8,13 +8,19 @@ public class Garage {
 
     public void buyCar(String newCarName){
         MyCar.money -= 300;
-        MyCar.allCar.put(newCarName,1);
         MyCar.cars.add(new MyCar(newCarName,1));
     }
 
-    public void sellCar(String carName){
+    public void sellCar(Integer index){
         MyCar.money -= 300;
-        MyCar.allCar.remove(carName);
-        MyCar.cars.remove(carName);
+        MyCar.cars.remove(index);
+    }
+    public static MyCar findCarByName(List<MyCar> cars, String carName){
+        for (MyCar c : cars) {
+            if(c.getCarName().equals(carName)){
+                return c;
+            }
+        }
+        return null;
     }
 }
