@@ -14,12 +14,24 @@ public class StoreDesign {
     public static void storeDesign() throws IOException, SAXException, ParserConfigurationException {
         boolean notQuit = true;
         while (notQuit){
-            System.out.printf("Select a car to upgrade: ");
+            boolean inWhile = true;
             Scanner userInput = new Scanner(System.in);
-            String carName = userInput.nextLine();
-            Garage garage = new Garage();
-            MyCar myCar = garage.findCarByName(MyCar.cars,carName);
-
+            String carName = null;
+            try {
+                while (inWhile) {
+                    System.out.println("Select a car to race: ");
+                    carName = userInput.nextLine();
+                    Garage garage = new Garage();
+                    if (garage.findCarByName(MyCar.cars, carName).equals(null)) {
+                        System.out.printf("Car named %s does not exist!", carName);
+                    } else {
+                        MyCar myCar = garage.findCarByName(MyCar.cars, carName);
+                        inWhile = false;
+                    }
+                }
+            } catch (Exception e) {
+                continue;
+            }
             int choice;
             Store store = new Store();
             System.out.println("     ____________________");

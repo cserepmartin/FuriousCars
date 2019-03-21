@@ -17,19 +17,27 @@ public class RaceDesign {
 
         boolean notQuit = true;
         while (notQuit){
+            boolean inWhile = true;
             int index;
             Scanner userInput = new Scanner(System.in);
+            String carName = null;
             try {
-                System.out.println("Select a car to upgrade: ");
-                String carName = userInput.nextLine();
-                index = MyCar.cars.indexOf(carName);
-                MyCar myCar = (MyCar) MyCar.cars.get(index);
+                while (inWhile) {
+                    System.out.println("Select a car to race: ");
+                    carName = userInput.nextLine();
+                    Garage garage = new Garage();
+                    if(garage.findCarByName(MyCar.cars,carName).equals(null)){
+                        System.out.printf("Car named %s does not exist!", carName);
+                    } else {
+                        MyCar myCar = garage.findCarByName(MyCar.cars, carName);
+                        inWhile = false;
+                    }
+                }
 
             } catch (Exception e) {
                 continue;
             }
             int choice;
-            String carName = null;
             System.out.println("     ___________________");
             System.out.println("     |                 |");
             System.out.println("     |       Race      |");
@@ -53,7 +61,7 @@ public class RaceDesign {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         Race dragRace = new Race();
-                        int result = dragRace.Racing(index);
+                        int result = dragRace.Racing(carName);
                         RaceDesign.printRaceResult(result);
                     }
                     break;
@@ -62,7 +70,7 @@ public class RaceDesign {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         VisualRace visualRace = new VisualRace();
-                        printVRaceResult(visualRace.vRace(visualRace.booleanGenerator()),carName);
+                        printVRaceResult(visualRace.vRace(visualRace.booleanGenerator()));
                     }
                     break;
                 default:
@@ -71,9 +79,6 @@ public class RaceDesign {
         }
     }
     public static void printRaceResult(Integer result){
-
-        Scanner userInput = new Scanner(System.in);
-        String carName = userInput.nextLine();
         if(result == 1){
             System.out.println("You win!");
             System.out.printf("Current balance: $%s\n", MyCar.money);
@@ -84,9 +89,8 @@ public class RaceDesign {
             System.out.println("It's a draw!");
         }
     }
-    public static void printVRaceResult(boolean result,String carName) {
+    public static void printVRaceResult(boolean result) {
 
-        MyCar myCar = new MyCar(carName,MyCar.allCar.get(carName));
         if (result) {
             System.out.println("You win!");
             System.out.printf("Current balance: $%s\n", MyCar.money);

@@ -36,6 +36,7 @@ public class GarageDesign {
                     String newCarName = carNameUserInput.nextLine();
                     Garage garage = new Garage();
                     garage.buyCar(newCarName);
+                    printBuyCar(newCarName);
                     break;
                 case 2:
                     System.out.printf("Select a name for your new car: \n");
@@ -43,17 +44,18 @@ public class GarageDesign {
                     String carNameForSale = carNameInputForSale.nextLine();
                     Garage garage1 = new Garage();
                     garage1.sellCar(carNameForSale);
+                    printSellCar(carNameForSale);
                     break;
                 default:
                     System.out.println("Please type a correct number!");
             }
         }
     }
-    public static void printBuyCar(Integer result){
-
+    public static void printBuyCar(String carName){
+        System.out.printf("Your new car named %s is on the garage now.\n",carName);
     }
-    public static void printSellCar(Integer result){
-
+    public static void printSellCar(String carName){
+        System.out.printf("%s is sold. Your balance: %s\n",carName,MyCar.money);
     }
 
 }

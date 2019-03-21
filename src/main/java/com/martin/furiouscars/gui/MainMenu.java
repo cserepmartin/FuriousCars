@@ -20,7 +20,11 @@ public class MainMenu {
             System.out.println("     |   Furious Cars   |");
             System.out.println("     |__________________|");
             System.out.println("           0. Exit");
-            System.out.println("          1. My Car");
+            if(MyCar.cars.size()==1){
+                System.out.println("          1. My Car");
+            } else {
+                System.out.println("         1. My Cars");
+            }
             System.out.println("           2. Shop");
             System.out.println("          3. Garage");
             System.out.println("           4. Race");
@@ -39,10 +43,7 @@ public class MainMenu {
                     System.exit(1);
                     break;
                 case 1:
-                    Scanner carNameUserInput = new Scanner(System.in);
-                    String newCarName = carNameUserInput.nextLine();
-                    Integer index = MyCar.cars.indexOf(newCarName);
-                    CarDataDesign.printCarDatas(newCarName);
+                    CarDataDesign.printCarDatas(MyCar.cars);
                     break;
                 case 2:
                     StoreDesign.storeDesign();
