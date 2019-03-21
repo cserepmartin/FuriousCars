@@ -20,7 +20,7 @@ public class RaceDesign {
             int index;
             Scanner userInput = new Scanner(System.in);
             try {
-                System.out.println("Car name: ");
+                System.out.println("Select a car to upgrade: ");
                 String carName = userInput.nextLine();
                 index = MyCar.cars.indexOf(carName);
                 MyCar myCar = (MyCar) MyCar.cars.get(index);

@@ -14,7 +14,7 @@ public class StoreDesign {
     public static void storeDesign() throws IOException, SAXException, ParserConfigurationException {
         boolean notQuit = true;
         while (notQuit){
-            System.out.println(MyCar.cars.get(0));
+            System.out.printf("Select a car to upgrade: ");
             Scanner userInput = new Scanner(System.in);
             String carName = userInput.nextLine();
             Garage garage = new Garage();
@@ -41,7 +41,7 @@ public class StoreDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    printEningeResult(store.EngineUpgrade(carName));
+                    printEningeResult(store.EngineUpgrade(carName),carName);
                     break;
 
                 default:
@@ -49,12 +49,13 @@ public class StoreDesign {
             }
         }
     }
-    public static void printEningeResult(Integer result){
-
+    public static void printEningeResult(Integer result,String carName){
+        Garage garage = new Garage();
+        MyCar myCar = garage.findCarByName(MyCar.cars,carName);
         if(result == 0){
             System.out.println("Sorry, but you don't have enough money for this!");
         } else if(result == 1){
-            System.out.printf("%s's engine is upgraded to level %s\n"/*,myCar.getCarName(),myCar.getEngine()*/);
+            System.out.printf("%s's engine is upgraded to level %s\n",myCar.getCarName(),myCar.getEngine());
         } else if(result == 2){
             System.out.println("You already reached the maximum engine level! Congrats!");
         }

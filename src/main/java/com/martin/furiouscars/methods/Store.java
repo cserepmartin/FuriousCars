@@ -15,7 +15,7 @@ public class Store {
 
                     return 0;
                 } else {
-                    MyCar.money = myCar.getEngine() * 100;
+                    MyCar.money -= myCar.getEngine() * 100;
                     myCar.setEngine(myCar.getEngine() + 1);
                     //MyCar.cars.set(myCar.getEngine());
                     return 1;

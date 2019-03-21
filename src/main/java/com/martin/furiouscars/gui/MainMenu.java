@@ -42,7 +42,7 @@ public class MainMenu {
                     Scanner carNameUserInput = new Scanner(System.in);
                     String newCarName = carNameUserInput.nextLine();
                     Integer index = MyCar.cars.indexOf(newCarName);
-                    CarDataDesign.printCarDatas(newCarName,index);
+                    CarDataDesign.printCarDatas(newCarName);
                     break;
                 case 2:
                     StoreDesign.storeDesign();

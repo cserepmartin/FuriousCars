@@ -11,9 +11,10 @@ public class Garage {
         MyCar.cars.add(new MyCar(newCarName,1));
     }
 
-    public void sellCar(Integer index){
-        MyCar.money -= 300;
-        MyCar.cars.remove(index);
+    public void sellCar(String carName){
+        MyCar myCar = findCarByName(MyCar.cars,carName);
+        MyCar.money += 150+myCar.getEngine()*100;
+        MyCar.cars.remove(myCar);
     }
     public static MyCar findCarByName(List<MyCar> cars, String carName){
         for (MyCar c : cars) {

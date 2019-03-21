@@ -31,14 +31,18 @@ public class GarageDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    System.out.printf("asd\n");
+                    System.out.printf("Select a name for your new car: \n");
                     Scanner carNameUserInput = new Scanner(System.in);
                     String newCarName = carNameUserInput.nextLine();
                     Garage garage = new Garage();
                     garage.buyCar(newCarName);
                     break;
                 case 2:
-
+                    System.out.printf("Select a name for your new car: \n");
+                    Scanner carNameInputForSale = new Scanner(System.in);
+                    String carNameForSale = carNameInputForSale.nextLine();
+                    Garage garage1 = new Garage();
+                    garage1.sellCar(carNameForSale);
                     break;
                 default:
                     System.out.println("Please type a correct number!");
