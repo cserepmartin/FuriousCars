@@ -13,30 +13,25 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RaceDesign {
-    public static void raceMenu() throws ParserConfigurationException, SAXException, IOException {
+    Scanner scanner;
+
+    public void raceMenu() throws ParserConfigurationException, SAXException, IOException {
 
         boolean notQuit = true;
         while (notQuit){
             boolean inWhile = true;
             int index;
-            Scanner userInput = new Scanner(System.in);
             String carName = null;
-            try {
                 while (inWhile) {
                     System.out.println("Select a car to race: ");
-                    carName = userInput.nextLine();
-                    Garage garage = new Garage();
-                    if(garage.findCarByName(MyCar.cars,carName).equals(null)){
+                    carName = scanner.nextLine();
+                    if(Garage.findCarByName(MyCar.cars,carName)==null){
                         System.out.printf("Car named %s does not exist!", carName);
                     } else {
-                        MyCar myCar = garage.findCarByName(MyCar.cars, carName);
+                        MyCar myCar = Garage.findCarByName(MyCar.cars, carName);
                         inWhile = false;
                     }
                 }
-
-            } catch (Exception e) {
-                continue;
-            }
             int choice;
             System.out.println("     ___________________");
             System.out.println("     |                 |");
@@ -47,7 +42,7 @@ public class RaceDesign {
             System.out.println("       2. Visual Race\n");
             System.out.print("Choose an option: ");
             try {
-                choice = userInput.nextInt();
+                choice = scanner.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Please type an integer: " + e.getMessage());
                 continue;
@@ -62,7 +57,7 @@ public class RaceDesign {
                     } else {
                         Race dragRace = new Race();
                         int result = dragRace.Racing(carName);
-                        RaceDesign.printRaceResult(result);
+                        printRaceResult(result);
                     }
                     break;
                 case 2:
@@ -78,7 +73,7 @@ public class RaceDesign {
             }
         }
     }
-    public static void printRaceResult(Integer result){
+    public void printRaceResult(Integer result){
         if(result == 1){
             System.out.println("You win!");
             System.out.printf("Current balance: $%s\n", MyCar.money);
@@ -89,7 +84,7 @@ public class RaceDesign {
             System.out.println("It's a draw!");
         }
     }
-    public static void printVRaceResult(boolean result) {
+    public void printVRaceResult(boolean result) {
 
         if (result) {
             System.out.println("You win!");

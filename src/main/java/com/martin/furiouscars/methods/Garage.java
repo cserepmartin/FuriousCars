@@ -1,20 +1,21 @@
 package com.martin.furiouscars.methods;
 
+import com.martin.furiouscars.Main;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Garage {
 
-
-    public void buyCar(String newCarName){
+    public static void buyCar(String newCarName, FirstGarage firstGarage){
         MyCar.money -= 300;
-        MyCar.cars.add(new MyCar(newCarName,1));
+        firstGarage.cars.add(new MyCar(newCarName,1));
     }
 
-    public void sellCar(String carName){
-        MyCar myCar = findCarByName(MyCar.cars,carName);
+    public void sellCar(String carName, FirstGarage firstGarage){
+        MyCar myCar = findCarByName(firstGarage.getCars(),carName);
         MyCar.money += 150+myCar.getEngine()*100;
-        MyCar.cars.remove(myCar);
+        firstGarage.cars.remove(myCar);
     }
     public static MyCar findCarByName(List<MyCar> cars, String carName){
         for (MyCar c : cars) {

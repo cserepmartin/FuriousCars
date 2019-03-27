@@ -1,20 +1,53 @@
 package com.martin.furiouscars.gui;
 
+import com.martin.furiouscars.Main;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import com.martin.furiouscars.methods.*;
 
 public class MainMenu {
-    public static void mainMenu() throws ParserConfigurationException, SAXException, IOException {
+
+    Scanner scanner;
+    StoreDesign storeDesign;
+    RaceDesign raceDesign;
+    CarDataDesign carDataDesign;
+    GarageDesign garageDesign;
+    Serialization serialization;
+    Deserialization deserialization;
+    Main main;
+    FirstGarage firstGarage;
+    private int money;
+
+    public MainMenu(Scanner scanner, StoreDesign storeDesign, RaceDesign raceDesign, CarDataDesign carDataDesign, GarageDesign garageDesign, Serialization serialization, Deserialization deserialization, Main main, FirstGarage firstGarage) {
+        this.scanner = scanner;
+        this.storeDesign = storeDesign;
+        this.raceDesign = raceDesign;
+        this.carDataDesign = carDataDesign;
+        this.garageDesign = garageDesign;
+        this.serialization = serialization;
+        this.deserialization = deserialization;
+        this.main = main;
+        this.firstGarage = firstGarage;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public void mainMenu() throws ParserConfigurationException, SAXException, IOException {
         boolean notQuit=true;
         while (notQuit)  {
             int choice;
             String carName = null;
-            Scanner userInput = new Scanner(System.in);
             System.out.println("     ____________________");
             System.out.println("     |                  |");
             System.out.println("     |   Furious Cars   |");
@@ -28,10 +61,11 @@ public class MainMenu {
             System.out.println("           2. Shop");
             System.out.println("          3. Garage");
             System.out.println("           4. Race");
-            System.out.println("         5. New Game");
+            System.out.println("           5. Save");
+            System.out.println("         6. New Game");
             System.out.print("\nChoose an option: ");
             try {
-                choice = userInput.nextInt();
+                choice = scanner.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Please type an integer: " + e.getMessage());
                 continue;
@@ -43,24 +77,26 @@ public class MainMenu {
                     System.exit(1);
                     break;
                 case 1:
-                    CarDataDesign.printCarDatas(MyCar.cars);
+                    carDataDesign.printCarDatas(firstGarage.cars,scanner);
                     break;
                 case 2:
-                    StoreDesign.storeDesign();
+                    storeDesign.storeDesign();
                     break;
                 case 3:
-                    GarageDesign.SellParts();
+                    garageDesign.SellParts(scanner,firstGarage);
                     break;
                 case 4:
-                    RaceDesign.raceMenu();
+                    raceDesign.raceMenu();
                     break;
                 case 5:
+                    serialization.serialization(firstGarage.getCars());
+                    break;
+                case 6:
                     System.out.println("Are you sure about that? | yes or no |");
-                    Scanner newUserInput = new Scanner(System.in);
-                    String inputString = newUserInput.nextLine();
+                    String inputString = scanner.nextLine();
                     if (inputString.toLowerCase().equals("yes")){
                         System.out.printf("Give a name for your new car: ");
-                        String newGameCarName = newUserInput.nextLine();
+                        String newGameCarName = scanner.nextLine();
                         MyCar.NewGame(newGameCarName);
                     } else {
                         System.out.println("Okay!");

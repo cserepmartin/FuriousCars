@@ -1,16 +1,14 @@
 package com.martin.furiouscars.methods;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class MyCar {
+public class MyCar implements Serializable {
 
     public static int money = 900;
     private String carName;
     private int engine;
-    public static Map<String,Integer> allCar = new HashMap<>();
     public static List cars = new ArrayList();
 
 
@@ -41,5 +39,13 @@ public class MyCar {
         money = 900;
         cars.clear();
         cars.add(new MyCar(newCarName,1));
+    }
+
+    @Override
+    public String toString() {
+        return "MyCar{" +
+                "Car Name ='" + carName + '\'' +
+                ", Engine Level =" + engine +
+                '}';
     }
 }

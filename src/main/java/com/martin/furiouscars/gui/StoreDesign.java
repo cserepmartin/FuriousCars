@@ -11,26 +11,22 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class StoreDesign {
-    public static void storeDesign() throws IOException, SAXException, ParserConfigurationException {
+    Scanner scanner;
+    public void storeDesign() throws IOException, SAXException, ParserConfigurationException {
         boolean notQuit = true;
         while (notQuit){
             boolean inWhile = true;
-            Scanner userInput = new Scanner(System.in);
             String carName = null;
-            try {
-                while (inWhile) {
-                    System.out.println("Select a car to race: ");
-                    carName = userInput.nextLine();
-                    Garage garage = new Garage();
-                    if (garage.findCarByName(MyCar.cars, carName).equals(null)) {
-                        System.out.printf("Car named %s does not exist!", carName);
-                    } else {
-                        MyCar myCar = garage.findCarByName(MyCar.cars, carName);
-                        inWhile = false;
-                    }
+            while (inWhile) {
+                System.out.println("Select a car to race: ");
+                carName = scanner.nextLine();
+                Garage garage = new Garage();
+                if (garage.findCarByName(MyCar.cars, carName) == null) {
+                    System.out.printf("Car named %s does not exist!", carName);
+                } else {
+                    MyCar myCar = garage.findCarByName(MyCar.cars, carName);
+                    inWhile = false;
                 }
-            } catch (Exception e) {
-                continue;
             }
             int choice;
             Store store = new Store();
@@ -42,7 +38,7 @@ public class StoreDesign {
             System.out.println("      1. Engine upgrade\n");
             System.out.print("Choose an option: ");
             try {
-                choice = userInput.nextInt();
+                choice = scanner.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Please type an integer: " + e.getMessage());
                 continue;
@@ -61,7 +57,7 @@ public class StoreDesign {
             }
         }
     }
-    public static void printEningeResult(Integer result,String carName){
+    public void printEningeResult(Integer result,String carName){
         Garage garage = new Garage();
         MyCar myCar = garage.findCarByName(MyCar.cars,carName);
         if(result == 0){

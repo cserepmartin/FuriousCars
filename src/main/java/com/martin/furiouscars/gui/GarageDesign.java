@@ -2,11 +2,16 @@ package com.martin.furiouscars.gui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import com.martin.furiouscars.Main;
+import com.martin.furiouscars.methods.FirstGarage;
 import com.martin.furiouscars.methods.Garage;
 import com.martin.furiouscars.methods.MyCar;
 
 public class GarageDesign {
-    public static void SellParts(){
+    Scanner scanner;
+    Garage garage;
+    public void SellParts(Scanner scanner, FirstGarage firstGarage){
         boolean notQuit = true;
         while (notQuit){
 
@@ -18,10 +23,9 @@ public class GarageDesign {
             System.out.println("          0. Leave");
             System.out.println("       1. Buy Car");
             System.out.println("       2. Sell Car\n");
-            Scanner userInput = new Scanner(System.in);
             System.out.print("Choose an option: ");
             try {
-                choice = userInput.nextInt();
+                choice = scanner.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Please type an integer: " + e.getMessage());
                 continue;
@@ -32,18 +36,14 @@ public class GarageDesign {
                     break;
                 case 1:
                     System.out.printf("Select a name for your new car: \n");
-                    Scanner carNameUserInput = new Scanner(System.in);
-                    String newCarName = carNameUserInput.nextLine();
-                    Garage garage = new Garage();
-                    garage.buyCar(newCarName);
+                    String newCarName = scanner.nextLine();
+                    garage.buyCar(newCarName, firstGarage);
                     printBuyCar(newCarName);
                     break;
                 case 2:
                     System.out.printf("Select a name for your new car: \n");
-                    Scanner carNameInputForSale = new Scanner(System.in);
-                    String carNameForSale = carNameInputForSale.nextLine();
-                    Garage garage1 = new Garage();
-                    garage1.sellCar(carNameForSale);
+                    String carNameForSale = scanner.nextLine();
+                    garage.sellCar(carNameForSale, firstGarage);
                     printSellCar(carNameForSale);
                     break;
                 default:
@@ -51,10 +51,10 @@ public class GarageDesign {
             }
         }
     }
-    public static void printBuyCar(String carName){
+    public void printBuyCar(String carName){
         System.out.printf("Your new car named %s is on the garage now.\n",carName);
     }
-    public static void printSellCar(String carName){
+    public void printSellCar(String carName){
         System.out.printf("%s is sold. Your balance: %s\n",carName,MyCar.money);
     }
 
