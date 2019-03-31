@@ -77,7 +77,7 @@ public class MainMenu {
                     System.exit(1);
                     break;
                 case 1:
-                    carDataDesign.printCarDatas(firstGarage.cars,scanner);
+                    carDataDesign.printCarDatas(firstGarage.cars);
                     break;
                 case 2:
                     storeDesign.storeDesign();

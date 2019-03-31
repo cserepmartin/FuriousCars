@@ -18,7 +18,7 @@ public class StoreDesign {
             boolean inWhile = true;
             String carName = null;
             while (inWhile) {
-                System.out.println("Select a car to race: ");
+                System.out.println("Select a car to upgrade: ");
                 carName = scanner.nextLine();
                 Garage garage = new Garage();
                 if (garage.findCarByName(MyCar.cars, carName) == null) {

@@ -24,6 +24,7 @@ public class RaceDesign {
             String carName = null;
                 while (inWhile) {
                     System.out.println("Select a car to race: ");
+                    scanner.nextLine();
                     carName = scanner.nextLine();
                     if(Garage.findCarByName(MyCar.cars,carName)==null){
                         System.out.printf("Car named %s does not exist!", carName);

@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Deserialization {
-    public void deserialization(ArrayList cars){
+    public void deserialization(ArrayList<MyCar> cars){
             try {
-                FileInputStream fileIn = new FileInputStream("/tmp/cars.ser");
+                FileInputStream fileIn = new FileInputStream("/cars.ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
-                cars = (ArrayList) in.readObject();
+                cars = (ArrayList<MyCar>) in.readObject();
                 in.close();
                 fileIn.close();
             } catch (FileNotFoundException e) {

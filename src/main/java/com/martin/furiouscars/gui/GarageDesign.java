@@ -35,12 +35,14 @@ public class GarageDesign {
                     notQuit = false;
                     break;
                 case 1:
+                    scanner.nextLine();
                     System.out.printf("Select a name for your new car: \n");
                     String newCarName = scanner.nextLine();
                     garage.buyCar(newCarName, firstGarage);
                     printBuyCar(newCarName);
                     break;
                 case 2:
+                    scanner.nextLine();
                     System.out.printf("Select a name for your new car: \n");
                     String carNameForSale = scanner.nextLine();
                     garage.sellCar(carNameForSale, firstGarage);

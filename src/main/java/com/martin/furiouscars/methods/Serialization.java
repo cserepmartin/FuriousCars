@@ -10,7 +10,7 @@ public class Serialization {
 
     public void serialization(ArrayList<MyCar> cars){
         try {
-            FileOutputStream fileOut = new FileOutputStream("/tmp/cars.ser");
+            FileOutputStream fileOut = new FileOutputStream("/cars.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(cars);
             out.close();

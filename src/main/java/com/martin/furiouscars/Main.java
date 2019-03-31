@@ -14,20 +14,22 @@ public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException{
         FirstGarage firstGarage = new FirstGarage();
         Deserialization deserialization = new Deserialization();
-            deserialization.deserialization(firstGarage.getCars());
+        deserialization.deserialization(firstGarage.getCars());
         Scanner userInput = new Scanner(System.in);
         StoreDesign storeDesign = new StoreDesign();
         RaceDesign raceDesign = new RaceDesign();
-        CarDataDesign carDataDesign = new CarDataDesign();
+        CarDataDesign carDataDesign = new CarDataDesign(userInput);
         GarageDesign garageDesign = new GarageDesign();
         Serialization serialization = new Serialization();
         Main main = new Main();
         MainMenu mainmenu = new MainMenu(userInput,storeDesign,raceDesign,carDataDesign,garageDesign,serialization,deserialization,main,firstGarage);
         MyCar myCar = new MyCar("",1);
+        System.out.println(firstGarage.cars.size());
+        deserialization.deserialization(firstGarage.cars);
         if (firstGarage.cars.size()==0) {
                 System.out.println("Name your first car: ");
                 String newCarName = userInput.nextLine();
-                MyCar.cars.add(new MyCar(newCarName,1));
+                firstGarage.cars.add(new MyCar(newCarName,1));
             mainmenu.mainMenu();
             } else {
             mainmenu.mainMenu();
