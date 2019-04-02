@@ -55,7 +55,7 @@ public class MainMenu {
             System.out.println("          3. Garage");
             System.out.println("           4. Race");
             System.out.println("           5. Save");
-            //System.out.println("         6. New Game");
+            System.out.println("         6. New Game");
             System.out.print("\nChoose an option: ");
             try {
                 choice = scanner.nextInt();
@@ -67,6 +67,7 @@ public class MainMenu {
             switch (choice) {
                 case 0:
                     serialization.serialization(firstGarage);
+                    System.out.println("Saving...");
                     System.out.println("Thanks for playing. Bye");
                     System.exit(1);
                     break;
@@ -86,17 +87,19 @@ public class MainMenu {
                 case 5:
                     serialization.serialization(firstGarage);
                     break;
-                /*case 6:
+                case 6:
                     System.out.println("Are you sure about that? | yes or no |");
+                    scanner.nextLine();
                     String inputString = scanner.nextLine();
                     if (inputString.toLowerCase().equals("yes")){
                         System.out.printf("Give a name for your new car: ");
                         String newGameCarName = scanner.nextLine();
-                        //MyCar.NewGame(newGameCarName);
+                            firstGarage.cars.clear();
+                        firstGarage.cars.add(new MyCar(newGameCarName, 1));
                     } else {
                         System.out.println("Okay!");
                     }
-                    break;*/
+                    break;
                 default:
                     System.out.println("No such option: " + choice);
                     break;

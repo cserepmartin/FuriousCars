@@ -11,7 +11,7 @@ import com.martin.furiouscars.methods.MyCar;
 
 public class GarageDesign {
     Scanner scanner;
-    Garage garage;
+    Garage garage = new Garage();
     public void SellParts(Scanner scanner, FirstGarage firstGarage, Money money){
         boolean notQuit = true;
         while (notQuit){
@@ -39,6 +39,7 @@ public class GarageDesign {
                     scanner.nextLine();
                     System.out.printf("Select a name for your new car: \n");
                     String newCarName = scanner.nextLine();
+                    System.out.println(newCarName);
                     garage.buyCar(newCarName, firstGarage,money);
                     printBuyCar(newCarName);
                     break;
