@@ -1,6 +1,7 @@
 package com.martin.furiouscars.gui;
 
 import com.martin.furiouscars.methods.Garage;
+import com.martin.furiouscars.methods.Money;
 import com.martin.furiouscars.methods.MyCar;
 
 import java.util.ArrayList;
@@ -14,9 +15,9 @@ public class CarDataDesign {
     }
 
 
-    public void printCarDatas(ArrayList<MyCar> cars){
+    public void printCarDatas(ArrayList<MyCar> cars, Money money){
         userInput.nextLine();
-        System.out.printf("Your balance: $%s\n", MyCar.money);
+        System.out.printf("Your balance: $%s\n", money.money);
         for (MyCar c : cars) {
             System.out.printf("Name: %s | Engine: %s\n",c.getCarName(),c.getEngine());
         }

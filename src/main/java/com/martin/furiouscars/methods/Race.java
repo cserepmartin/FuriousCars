@@ -6,12 +6,20 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.Random;
 
-public class Race  {
-    int enemyCarStat;
-    int myCarStat;
-    public int OverallCarData(String carName) {
+public abstract class Race {
+    private int enemyCarStat;
+    private int myCarStat;
+
+    public int WhoIsTheWinner(Integer result){
+        if(result == 0){
+            return 0;
+        } else if(result == 1){
+            return 1;
+        } else return 2;
+    }
+    public int OverallCarData(String carName,FirstGarage firstGarage) {
         Garage garage = new Garage();
-        MyCar myCar = garage.findCarByName(MyCar.cars,carName);
+        MyCar myCar = garage.findCarByName(firstGarage.cars,carName);
         myCarStat = myCar.getEngine();
         return myCarStat;
     }
@@ -29,20 +37,13 @@ public class Race  {
         } else {
             return false;
         }
-
     }
-
-    public Integer Racing(String carName) throws IOException, SAXException, ParserConfigurationException {
-        EnemyGenerator();
-        OverallCarData(carName);
-        if(myCarStat>enemyCarStat) {
-           MyCar.money +=300;
-            return 1;
-        } else if(myCarStat<enemyCarStat) {
-            MyCar.money +=300;
-            return 2;
-        } else {
-            return 0;
+        public int DragRace(String carName,FirstGarage firstGarage,Money money) throws ParserConfigurationException, SAXException, IOException {
+            DragRace dragRace = new DragRace();
+            if(dragRace.Racing(OverallCarData(carName,firstGarage), EnemyGenerator(),money) == 0){
+                return 0;
+            } else if(dragRace.Racing(OverallCarData(carName,firstGarage), EnemyGenerator(),money) == 1){
+                return 1;
+            } else return 2;
         }
-    }
 }

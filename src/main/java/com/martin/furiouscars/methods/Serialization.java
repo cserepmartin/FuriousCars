@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 public class Serialization {
 
-    public void serialization(ArrayList<MyCar> cars){
+    public void serialization(FirstGarage firstGarage){
         try {
             FileOutputStream fileOut = new FileOutputStream("/cars.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(cars);
+            out.writeObject(firstGarage.cars);
             out.close();
             fileOut.close();
         } catch (FileNotFoundException e) {

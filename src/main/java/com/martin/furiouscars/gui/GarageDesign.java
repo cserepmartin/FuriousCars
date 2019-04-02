@@ -6,12 +6,13 @@ import java.util.Scanner;
 import com.martin.furiouscars.Main;
 import com.martin.furiouscars.methods.FirstGarage;
 import com.martin.furiouscars.methods.Garage;
+import com.martin.furiouscars.methods.Money;
 import com.martin.furiouscars.methods.MyCar;
 
 public class GarageDesign {
     Scanner scanner;
     Garage garage;
-    public void SellParts(Scanner scanner, FirstGarage firstGarage){
+    public void SellParts(Scanner scanner, FirstGarage firstGarage, Money money){
         boolean notQuit = true;
         while (notQuit){
 
@@ -38,15 +39,15 @@ public class GarageDesign {
                     scanner.nextLine();
                     System.out.printf("Select a name for your new car: \n");
                     String newCarName = scanner.nextLine();
-                    garage.buyCar(newCarName, firstGarage);
+                    garage.buyCar(newCarName, firstGarage,money);
                     printBuyCar(newCarName);
                     break;
                 case 2:
                     scanner.nextLine();
                     System.out.printf("Select a name for your new car: \n");
                     String carNameForSale = scanner.nextLine();
-                    garage.sellCar(carNameForSale, firstGarage);
-                    printSellCar(carNameForSale);
+                    garage.sellCar(carNameForSale, firstGarage,money);
+                    printSellCar(carNameForSale,money);
                     break;
                 default:
                     System.out.println("Please type a correct number!");
@@ -56,8 +57,8 @@ public class GarageDesign {
     public void printBuyCar(String carName){
         System.out.printf("Your new car named %s is on the garage now.\n",carName);
     }
-    public void printSellCar(String carName){
-        System.out.printf("%s is sold. Your balance: %s\n",carName,MyCar.money);
+    public void printSellCar(String carName, Money money){
+        System.out.printf("%s is sold. Your balance: %s\n",carName,money.money);
     }
 
 }

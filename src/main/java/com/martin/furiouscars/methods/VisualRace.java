@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class VisualRace extends Race {
 
-    public boolean vRace(Boolean winner){
+    public boolean vRace(Boolean winner,Money money){
 
         if(winner){
-            MyCar.money += 1000;
+            money.money += 1000;
 
             return true;
         } else {
-            MyCar.money -= 100;
+            money.money -= 100;
             return false;
         }
     }

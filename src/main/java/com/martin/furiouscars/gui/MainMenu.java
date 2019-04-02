@@ -21,9 +21,9 @@ public class MainMenu {
     Deserialization deserialization;
     Main main;
     FirstGarage firstGarage;
-    private int money;
+    Money money;
 
-    public MainMenu(Scanner scanner, StoreDesign storeDesign, RaceDesign raceDesign, CarDataDesign carDataDesign, GarageDesign garageDesign, Serialization serialization, Deserialization deserialization, Main main, FirstGarage firstGarage) {
+    public MainMenu(Scanner scanner, StoreDesign storeDesign, RaceDesign raceDesign, CarDataDesign carDataDesign, GarageDesign garageDesign, Serialization serialization, Deserialization deserialization, Main main, FirstGarage firstGarage, Money money) {
         this.scanner = scanner;
         this.storeDesign = storeDesign;
         this.raceDesign = raceDesign;
@@ -33,13 +33,6 @@ public class MainMenu {
         this.deserialization = deserialization;
         this.main = main;
         this.firstGarage = firstGarage;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
         this.money = money;
     }
 
@@ -53,7 +46,7 @@ public class MainMenu {
             System.out.println("     |   Furious Cars   |");
             System.out.println("     |__________________|");
             System.out.println("           0. Exit");
-            if(MyCar.cars.size()==1){
+            if(firstGarage.cars.size()==1){
                 System.out.println("          1. My Car");
             } else {
                 System.out.println("         1. My Cars");
@@ -62,7 +55,7 @@ public class MainMenu {
             System.out.println("          3. Garage");
             System.out.println("           4. Race");
             System.out.println("           5. Save");
-            System.out.println("         6. New Game");
+            //System.out.println("         6. New Game");
             System.out.print("\nChoose an option: ");
             try {
                 choice = scanner.nextInt();
@@ -73,35 +66,37 @@ public class MainMenu {
 
             switch (choice) {
                 case 0:
+                    serialization.serialization(firstGarage);
                     System.out.println("Thanks for playing. Bye");
                     System.exit(1);
                     break;
                 case 1:
-                    carDataDesign.printCarDatas(firstGarage.cars);
+                    carDataDesign.printCarDatas(firstGarage.cars,money);
                     break;
                 case 2:
-                    storeDesign.storeDesign();
+                    storeDesign.storeDesign(firstGarage,money);
                     break;
                 case 3:
-                    garageDesign.SellParts(scanner,firstGarage);
+                    garageDesign.SellParts(scanner,firstGarage,money);
                     break;
                 case 4:
-                    raceDesign.raceMenu();
+                    Garage garage = new Garage();
+                    raceDesign.raceMenu(firstGarage,scanner,money,garage);
                     break;
                 case 5:
-                    serialization.serialization(firstGarage.getCars());
+                    serialization.serialization(firstGarage);
                     break;
-                case 6:
+                /*case 6:
                     System.out.println("Are you sure about that? | yes or no |");
                     String inputString = scanner.nextLine();
                     if (inputString.toLowerCase().equals("yes")){
                         System.out.printf("Give a name for your new car: ");
                         String newGameCarName = scanner.nextLine();
-                        MyCar.NewGame(newGameCarName);
+                        //MyCar.NewGame(newGameCarName);
                     } else {
                         System.out.println("Okay!");
                     }
-                    break;
+                    break;*/
                 default:
                     System.out.println("No such option: " + choice);
                     break;

@@ -6,10 +6,8 @@ import java.util.List;
 
 public class MyCar implements Serializable {
 
-    public static int money = 900;
     private String carName;
     private int engine;
-    public static List cars = new ArrayList();
 
 
     public MyCar(String carName, int engine) {
@@ -35,11 +33,11 @@ public class MyCar implements Serializable {
 
 
 
-    public static void NewGame(String newCarName){
+    /*public void NewGame(String newCarName){
         money = 900;
         cars.clear();
         cars.add(new MyCar(newCarName,1));
-    }
+    }*/
 
     @Override
     public String toString() {

@@ -7,14 +7,16 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException{
         FirstGarage firstGarage = new FirstGarage();
+        Money money = new Money();
         Deserialization deserialization = new Deserialization();
-        deserialization.deserialization(firstGarage.getCars());
+        deserialization.deserialization(firstGarage);
         Scanner userInput = new Scanner(System.in);
         StoreDesign storeDesign = new StoreDesign();
         RaceDesign raceDesign = new RaceDesign();
@@ -22,10 +24,10 @@ public class Main {
         GarageDesign garageDesign = new GarageDesign();
         Serialization serialization = new Serialization();
         Main main = new Main();
-        MainMenu mainmenu = new MainMenu(userInput,storeDesign,raceDesign,carDataDesign,garageDesign,serialization,deserialization,main,firstGarage);
+        MainMenu mainmenu = new MainMenu(userInput,storeDesign,raceDesign,carDataDesign,garageDesign,serialization,deserialization,main,firstGarage,money);
         MyCar myCar = new MyCar("",1);
+        //deserialization.deserialization(firstGarage.cars);
         System.out.println(firstGarage.cars.size());
-        deserialization.deserialization(firstGarage.cars);
         if (firstGarage.cars.size()==0) {
                 System.out.println("Name your first car: ");
                 String newCarName = userInput.nextLine();

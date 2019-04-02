@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class RaceDesign {
     Scanner scanner;
 
-    public void raceMenu() throws ParserConfigurationException, SAXException, IOException {
+    public void raceMenu(FirstGarage firstGarage,Scanner scanner,Money money,Garage garage) throws ParserConfigurationException, SAXException, IOException {
 
         boolean notQuit = true;
         while (notQuit){
@@ -26,10 +26,10 @@ public class RaceDesign {
                     System.out.println("Select a car to race: ");
                     scanner.nextLine();
                     carName = scanner.nextLine();
-                    if(Garage.findCarByName(MyCar.cars,carName)==null){
+                    if(garage.findCarByName(firstGarage.cars,carName)==null){
                         System.out.printf("Car named %s does not exist!", carName);
                     } else {
-                        MyCar myCar = Garage.findCarByName(MyCar.cars, carName);
+                        MyCar myCar = garage.findCarByName(firstGarage.cars, carName);
                         inWhile = false;
                     }
                 }
@@ -53,20 +53,25 @@ public class RaceDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    if(MyCar.money<300) {
+                    if(money.money<300) {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
-                        Race dragRace = new Race();
-                        int result = dragRace.Racing(carName);
-                        printRaceResult(result);
+                        Race dragRace = new Race() {
+                            @Override
+                            public int WhoIsTheWinner(Integer result) {
+                                return super.WhoIsTheWinner(result);
+                            }
+                        };
+                        int result = dragRace.WhoIsTheWinner(dragRace.DragRace(carName,firstGarage,money));
+                        printRaceResult(result,money);
                     }
                     break;
                 case 2:
-                    if(MyCar.money<100) {
+                    if(money.money<100) {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         VisualRace visualRace = new VisualRace();
-                        printVRaceResult(visualRace.vRace(visualRace.booleanGenerator()));
+                        printVRaceResult(visualRace.vRace(visualRace.booleanGenerator(),money),money);
                     }
                     break;
                 default:
@@ -74,25 +79,25 @@ public class RaceDesign {
             }
         }
     }
-    public void printRaceResult(Integer result){
+    public void printRaceResult(Integer result,Money money){
         if(result == 1){
             System.out.println("You win!");
-            System.out.printf("Current balance: $%s\n", MyCar.money);
+            System.out.printf("Current balance: $%s\n", money.money);
         } else if(result == 2){
             System.out.println("You lose!");
-            System.out.printf("Current balance: $%s\n", MyCar.money);
-        } else if(result == 10){
+            System.out.printf("Current balance: $%s\n", money.money);
+        } else if(result == 3){
             System.out.println("It's a draw!");
         }
     }
-    public void printVRaceResult(boolean result) {
+    public void printVRaceResult(boolean result,Money money) {
 
         if (result) {
             System.out.println("You win!");
-            System.out.printf("Current balance: $%s\n", MyCar.money);
+            System.out.printf("Current balance: $%s\n", money.money);
         } else {
             System.out.println("You lose!");
-            System.out.printf("Current balance: $%s\n", MyCar.money);
+            System.out.printf("Current balance: $%s\n", money.money);
         }
     }
 }
