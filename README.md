@@ -15,5 +15,7 @@ Robi észrevételek:
 
 * Nem működik a serializáció - JAVÍTVA
 * Shop NPE - JAVÍTVA
-* 
-* 
+* Rendes abstract osztály csinálása
+* "Race class has an abstract method - race.
+ public int race(MyCar car); Different subclasses implement 
+ this method differently. - Done"
