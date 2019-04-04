@@ -10,3 +10,10 @@ public int race(MyCar car); Different subclasses implement this method different
 * No static, forever. Nope! - Done
 * több garázs - mindegyikhez lehessen adni autót - 
 * Only do "new Garage" (same for Store, etc.) when the user choose to do so - when you want to enter the store don't create a new Garage, etc. find the earlier reference (which is stored somewhere). - 
+
+Robi észrevételek:
+
+* Nem működik a serializáció - JAVÍTVA
+* Shop NPE - JAVÍTVA
+* 
+* 

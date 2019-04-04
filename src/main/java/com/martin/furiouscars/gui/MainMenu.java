@@ -75,7 +75,7 @@ public class MainMenu {
                     carDataDesign.printCarDatas(firstGarage.cars,money);
                     break;
                 case 2:
-                    storeDesign.storeDesign(firstGarage,money);
+                    storeDesign.storeDesign(firstGarage,money,scanner);
                     break;
                 case 3:
                     garageDesign.SellParts(scanner,firstGarage,money);
