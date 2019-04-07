@@ -56,14 +56,8 @@ public class RaceDesign {
                     if(money.money<300) {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
-                        Race dragRace = new Race() {
-                            @Override
-                            public int WhoIsTheWinner(Integer result) {
-                                return super.WhoIsTheWinner(result);
-                            }
-                        };
-                        int result = dragRace.WhoIsTheWinner(dragRace.DragRace(carName,firstGarage,money));
-                        printRaceResult(result,money);
+                        DragRace dragRace = new DragRace();
+                        printRaceResult(dragRace.WhoIsTheWinner(carName,firstGarage,money),money);
                     }
                     break;
                 case 2:
@@ -71,7 +65,7 @@ public class RaceDesign {
                         System.out.println("Sorry, but you don't have enough money for this!");
                     } else {
                         VisualRace visualRace = new VisualRace();
-                        printVRaceResult(visualRace.vRace(visualRace.booleanGenerator(),money),money);
+                        printVRaceResult(visualRace.WhoIsTheWinner(carName,firstGarage,money),money);
                     }
                     break;
                 default:
@@ -80,22 +74,22 @@ public class RaceDesign {
         }
     }
     public void printRaceResult(Integer result,Money money){
-        if(result == 1){
+        if(result == 0){
             System.out.println("You win!");
             System.out.printf("Current balance: $%s\n", money.money);
-        } else if(result == 2){
+        } else if(result == 1){
             System.out.println("You lose!");
             System.out.printf("Current balance: $%s\n", money.money);
-        } else if(result == 3){
+        } else if(result == 2){
             System.out.println("It's a draw!");
         }
     }
-    public void printVRaceResult(boolean result,Money money) {
+    public void printVRaceResult(Integer result,Money money) {
 
-        if (result) {
+        if (result == 0) {
             System.out.println("You win!");
             System.out.printf("Current balance: $%s\n", money.money);
-        } else {
+        } else if (result == 1){
             System.out.println("You lose!");
             System.out.printf("Current balance: $%s\n", money.money);
         }
