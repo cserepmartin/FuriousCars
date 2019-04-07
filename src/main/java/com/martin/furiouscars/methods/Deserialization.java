@@ -10,7 +10,7 @@ import java.util.List;
 public class Deserialization {
     public void deserialization(FirstGarage firstGarage){
             try {
-                FileInputStream fileIn = new FileInputStream("/cars.ser");
+                FileInputStream fileIn = new FileInputStream("cars.ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
                 firstGarage.cars = (ArrayList<MyCar>) in.readObject();
                 in.close();

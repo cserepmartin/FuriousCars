@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class StoreDesign {
     Scanner scanner;
-    public void storeDesign(FirstGarage firstGarage, Money money) throws IOException, SAXException, ParserConfigurationException {
+    public void storeDesign(FirstGarage firstGarage, Money money, Scanner scanner) throws IOException, SAXException, ParserConfigurationException {
         boolean notQuit = true;
         Garage garage = new Garage();
         while (notQuit){
@@ -18,6 +18,7 @@ public class StoreDesign {
             String carName = null;
             while (inWhile) {
                 System.out.println("Select a car to upgrade: ");
+                scanner.nextLine();
                 carName = scanner.nextLine();
                 if (garage.findCarByName(firstGarage.cars, carName) == null) {
                     System.out.printf("Car named %s does not exist!", carName);
