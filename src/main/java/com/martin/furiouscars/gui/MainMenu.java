@@ -5,7 +5,6 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import com.martin.furiouscars.methods.*;
@@ -20,10 +19,11 @@ public class MainMenu {
     Serialization serialization;
     Deserialization deserialization;
     Main main;
-    FirstGarage firstGarage;
+    Garage garage;
     Money money;
+    RaceModelling raceModelling;
 
-    public MainMenu(Scanner scanner, StoreDesign storeDesign, RaceDesign raceDesign, CarDataDesign carDataDesign, GarageDesign garageDesign, Serialization serialization, Deserialization deserialization, Main main, FirstGarage firstGarage, Money money) {
+    public MainMenu(Scanner scanner, StoreDesign storeDesign, RaceDesign raceDesign, CarDataDesign carDataDesign, GarageDesign garageDesign, Serialization serialization, Deserialization deserialization, Main main, Garage garage, Money money, RaceModelling raceModelling) {
         this.scanner = scanner;
         this.storeDesign = storeDesign;
         this.raceDesign = raceDesign;
@@ -32,11 +32,12 @@ public class MainMenu {
         this.serialization = serialization;
         this.deserialization = deserialization;
         this.main = main;
-        this.firstGarage = firstGarage;
+        this.garage = garage;
         this.money = money;
+        this.raceModelling = raceModelling;
     }
 
-    public void mainMenu() throws ParserConfigurationException, SAXException, IOException {
+    public void mainMenu(){
         boolean notQuit=true;
         while (notQuit)  {
             int choice;
@@ -46,7 +47,7 @@ public class MainMenu {
             System.out.println("     |   Furious Cars   |");
             System.out.println("     |__________________|");
             System.out.println("           0. Exit");
-            if(firstGarage.cars.size()==1){
+            if(garage.cars.size()==1){
                 System.out.println("          1. My Car");
             } else {
                 System.out.println("         1. My Cars");
@@ -66,26 +67,41 @@ public class MainMenu {
 
             switch (choice) {
                 case 0:
-                    serialization.serialization(firstGarage);
+                    serialization.serialization(raceModelling);
                     System.out.println("Saving...");
                     System.out.println("Thanks for playing. Bye");
                     System.exit(1);
                     break;
                 case 1:
-                    carDataDesign.printCarDatas(firstGarage.cars,money);
+                    carDataDesign.printCarDatas(garage.cars,money,raceModelling);
                     break;
                 case 2:
-                    storeDesign.storeDesign(firstGarage,money,scanner);
+                    try {
+                        storeDesign.storeDesign(garage,money,scanner);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (SAXException e) {
+                        e.printStackTrace();
+                    } catch (ParserConfigurationException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 3:
-                    garageDesign.SellParts(scanner,firstGarage,money);
+                    garageDesign.SellParts(scanner,garage,money,raceModelling);
                     break;
                 case 4:
-                    Garage garage = new Garage();
-                    raceDesign.raceMenu(firstGarage,scanner,money,garage);
+                    try {
+                        raceDesign.raceMenu(garage,scanner,money,garage);
+                    } catch (ParserConfigurationException e) {
+                        e.printStackTrace();
+                    } catch (SAXException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 5:
-                    serialization.serialization(firstGarage);
+                    serialization.serialization(raceModelling);
                     break;
                 case 6:
                     System.out.println("Are you sure about that? | yes or no |");
@@ -94,8 +110,8 @@ public class MainMenu {
                     if (inputString.toLowerCase().equals("yes")){
                         System.out.printf("Give a name for your new car: ");
                         String newGameCarName = scanner.nextLine();
-                            firstGarage.cars.clear();
-                        firstGarage.cars.add(new MyCar(newGameCarName, 1));
+                        garage.cars.clear();
+                        garage.cars.add(new MyCar(newGameCarName, 1));
                     } else {
                         System.out.println("Okay!");
                     }

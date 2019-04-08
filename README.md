@@ -15,7 +15,17 @@ Robi észrevételek:
 
 * Nem működik a serializáció - JAVÍTVA
 * Shop NPE - JAVÍTVA
-* Rendes abstract osztály csinálása
+* Rendes abstract osztály csinálása - Done
 * "Race class has an abstract method - race.
  public int race(MyCar car); Different subclasses implement 
  this method differently. - Done"
+
+
+Final: 
+* a menüben legyenek elkapva az exceptionok - DONE
+* Data hiding - DONE
+* Firstgarage and garage egybegyúrása - DONE
+* garázsok létrehozása - DONE
+* mentse a pénzt is - 
+* Out of money exception - 
+* racemodelling enkapszuláció (ezt serializálja) - 

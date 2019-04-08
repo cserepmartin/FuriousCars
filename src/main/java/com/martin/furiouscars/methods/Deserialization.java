@@ -5,22 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class Deserialization {
-    public void deserialization(FirstGarage firstGarage){
-            try {
+    public void deserialization(RaceModelling raceModelling) throws IOException, ClassNotFoundException {
+
                 FileInputStream fileIn = new FileInputStream("cars.ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
-                firstGarage.cars = (ArrayList<MyCar>) in.readObject();
+                raceModelling.garages = (Map<String, ArrayList<MyCar>>) in.readObject();
                 in.close();
                 fileIn.close();
-            } catch (FileNotFoundException e) {
-                System.out.println("You don't have save yet.\nCreating new game...");
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
     }
 }

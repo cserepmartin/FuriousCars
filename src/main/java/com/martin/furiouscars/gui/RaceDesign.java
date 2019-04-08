@@ -1,7 +1,6 @@
 package com.martin.furiouscars.gui;
 
 import com.martin.furiouscars.methods.Garage;
-import com.martin.furiouscars.methods.Race;
 import com.martin.furiouscars.methods.MyCar;
 import com.martin.furiouscars.methods.VisualRace;
 import com.martin.furiouscars.methods.*;
@@ -15,7 +14,7 @@ import java.util.Scanner;
 public class RaceDesign {
     Scanner scanner;
 
-    public void raceMenu(FirstGarage firstGarage,Scanner scanner,Money money,Garage garage) throws ParserConfigurationException, SAXException, IOException {
+    public void raceMenu(Garage firstGarage, Scanner scanner, Money money, Garage garage) throws ParserConfigurationException, SAXException, IOException {
 
         boolean notQuit = true;
         while (notQuit){

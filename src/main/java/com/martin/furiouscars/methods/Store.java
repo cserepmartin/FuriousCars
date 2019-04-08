@@ -1,12 +1,10 @@
 package com.martin.furiouscars.methods;
 
-import java.util.Scanner;
-
 public class Store {
 
 
-    public Integer EngineUpgrade(String carName,FirstGarage firstGarage, Money money, Garage garage) {
-        MyCar myCar = garage.findCarByName(firstGarage.cars,carName);
+    public Integer EngineUpgrade(String carName, Money money, Garage garage) {
+        MyCar myCar = garage.findCarByName(garage.cars,carName);
             if (myCar.getEngine() < 5) {
                 if (money.money < myCar.getEngine() * 100) {
 

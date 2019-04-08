@@ -1,12 +1,11 @@
 package com.martin.furiouscars.methods;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class VisualRace extends Race {
 
     @Override
-    public int WhoIsTheWinner(String carName, FirstGarage firstGarage,Money money){
+    public int WhoIsTheWinner(String carName, Garage  garage, Money money){
         Random random = new Random();
         int result = random.nextInt(2)+1;
         if(result == 2){

@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class StoreDesign {
     Scanner scanner;
-    public void storeDesign(FirstGarage firstGarage, Money money, Scanner scanner) throws IOException, SAXException, ParserConfigurationException {
+    public void storeDesign(Garage firstGarage, Money money, Scanner scanner) throws IOException, SAXException, ParserConfigurationException {
         boolean notQuit = true;
         Garage garage = new Garage();
         while (notQuit){
@@ -48,7 +48,7 @@ public class StoreDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    printEningeResult(store.EngineUpgrade(carName,firstGarage,money,garage),carName,firstGarage);
+                    printEningeResult(store.EngineUpgrade(carName,money,garage),carName,firstGarage);
                     break;
 
                 default:
@@ -56,7 +56,7 @@ public class StoreDesign {
             }
         }
     }
-    public void printEningeResult(Integer result,String carName,FirstGarage firstGarage){
+    public void printEningeResult(Integer result, String carName, Garage firstGarage){
         Garage garage = new Garage();
         MyCar myCar = garage.findCarByName(firstGarage.cars,carName);
         if(result == 0){

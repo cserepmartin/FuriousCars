@@ -7,23 +7,24 @@ import java.io.IOException;
 import java.util.Random;
 
 public class DragRace extends Race {
-    public int OverallCarData(String carName,FirstGarage firstGarage) {
-        Garage garage = new Garage();
-        MyCar myCar = garage.findCarByName(firstGarage.cars,carName);
+    private int enemyCarStat;
+    private int myCarStat;
+    private int OverallCarData(String carName, Garage garage) {
+        MyCar myCar = garage.findCarByName(garage.cars,carName);
         myCarStat = myCar.getEngine();
         return myCarStat;
     }
-    public int EnemyGenerator() {
+    private int EnemyGenerator() {
         Random rand = new Random();
         enemyCarStat = rand.nextInt(5);
         return enemyCarStat;
     }
     @Override
-    public int WhoIsTheWinner(String carName,FirstGarage firstGarage, Money money) throws ParserConfigurationException, SAXException, IOException {
-        if(OverallCarData(carName,firstGarage)> EnemyGenerator()){
+    public int WhoIsTheWinner(String carName, Garage garage, Money money) {
+        if(OverallCarData(carName,garage)> EnemyGenerator()){
             money.setMoney(money.getMoney()+300);
             return 0;
-        } else if(OverallCarData(carName,firstGarage) < EnemyGenerator()){
+        } else if(OverallCarData(carName,garage) < EnemyGenerator()){
             money.setMoney(money.getMoney()-300);
             return 1;
         } else return 2;
