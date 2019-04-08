@@ -9,7 +9,6 @@ public class Serialization {
 
     public void serialization(RaceModelling raceModelling){
         try {
-
             FileOutputStream fileOut = new FileOutputStream("cars.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(raceModelling.garages);

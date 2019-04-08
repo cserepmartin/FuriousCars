@@ -4,6 +4,7 @@ import com.martin.furiouscars.gui.*;
 import com.martin.furiouscars.methods.*;
 
 import java.io.IOException;
+import java.io.StreamCorruptedException;
 import java.util.Scanner;
 
 public class Main {
@@ -14,6 +15,8 @@ public class Main {
         Deserialization deserialization = new Deserialization();
         try {
             deserialization.deserialization(raceModelling);
+        } catch (StreamCorruptedException e) {
+            System.out.printf("Your save file is damaged! Error: %s \n Creating new game...\n",e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -37,7 +40,6 @@ public class Main {
             System.out.println("Name your first car: ");
             String newCarName = userInput.nextLine();
             raceModelling.garages.get(newGarageName).add(new MyCar(newCarName,1));
-            System.out.println(raceModelling.garages);
             mainmenu.mainMenu();
             } else {
             mainmenu.mainMenu();
