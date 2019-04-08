@@ -7,6 +7,6 @@ import java.io.IOException;
 
 public abstract class Race {
 
-    public abstract int WhoIsTheWinner(String carName, Garage garage, Money money) throws ParserConfigurationException, SAXException, IOException;
+    public abstract int WhoIsTheWinner(String carName, Garage garage, RaceModelling raceModelling) throws ParserConfigurationException, SAXException, IOException, OutOfMoneyException;
 
 }

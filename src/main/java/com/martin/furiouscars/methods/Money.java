@@ -1,7 +1,7 @@
 package com.martin.furiouscars.methods;
 
 public class Money {
-    public int money = 900;
+    public int money = 0;
 
     public int getMoney() {
         return money;

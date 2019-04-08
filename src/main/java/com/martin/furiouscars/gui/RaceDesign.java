@@ -14,24 +14,13 @@ import java.util.Scanner;
 public class RaceDesign {
     Scanner scanner;
 
-    public void raceMenu(Garage firstGarage, Scanner scanner, Money money, Garage garage) throws ParserConfigurationException, SAXException, IOException {
+    public void raceMenu(Garage firstGarage, Scanner scanner, Money money, Garage garage, RaceModelling raceModelling) throws ParserConfigurationException, SAXException, IOException {
 
         boolean notQuit = true;
         while (notQuit){
             boolean inWhile = true;
             int index;
             String carName = null;
-                while (inWhile) {
-                    System.out.println("Select a car to race: ");
-                    scanner.nextLine();
-                    carName = scanner.nextLine();
-                    if(garage.findCarByName(firstGarage.cars,carName)==null){
-                        System.out.printf("Car named %s does not exist!", carName);
-                    } else {
-                        MyCar myCar = garage.findCarByName(firstGarage.cars, carName);
-                        inWhile = false;
-                    }
-                }
             int choice;
             System.out.println("     ___________________");
             System.out.println("     |                 |");
@@ -52,19 +41,45 @@ public class RaceDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    if(money.money<300) {
-                        System.out.println("Sorry, but you don't have enough money for this!");
-                    } else {
+                    while (inWhile) {
+                        System.out.println("Select a garage: ");
+                        scanner.nextLine();
+                        String garageName = scanner.nextLine();
+                        if(raceModelling.garages.containsKey(garageName)){
+                            if(garage.findCarByName(raceModelling,carName)==null){
+                                System.out.printf("Car named %s does not exist!", carName);
+                            } else {
+                                MyCar myCar = garage.findCarByName(raceModelling, carName);
+                                inWhile = false;
+                            }
+                        }
+                    }
                         DragRace dragRace = new DragRace();
-                        printRaceResult(dragRace.WhoIsTheWinner(carName,firstGarage,money),money);
+                    try {
+                        printRaceResult(dragRace.WhoIsTheWinner(carName,firstGarage,raceModelling),money);
+                    } catch (OutOfMoneyException e) {
+                        e.printStackTrace();
                     }
                     break;
                 case 2:
-                    if(money.money<100) {
-                        System.out.println("Sorry, but you don't have enough money for this!");
-                    } else {
+
+                    while (inWhile) {
+                        System.out.println("Select a car to race: ");
+                        scanner.nextLine();
+                        carName = scanner.nextLine();
+                        if(garage.findCarByName(raceModelling,carName)==null){
+                            System.out.printf("Car named %s does not exist!", carName);
+                        } else {
+                            MyCar myCar = garage.findCarByName(raceModelling, carName);
+                            inWhile = false;
+                        }
+                    }
                         VisualRace visualRace = new VisualRace();
-                        printVRaceResult(visualRace.WhoIsTheWinner(carName,firstGarage,money),money);
+                    try {
+                        printVRaceResult(visualRace.WhoIsTheWinner(carName,firstGarage,raceModelling),money);
+                    } catch (OutOfMoneyException e) {
+                        System.out.printf("Error: %s\n",e.getMessage());
+                        continue;
                     }
                     break;
                 default:

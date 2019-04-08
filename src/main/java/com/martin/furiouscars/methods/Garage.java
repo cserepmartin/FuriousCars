@@ -1,7 +1,7 @@
 package com.martin.furiouscars.methods;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class Garage {
 
@@ -11,15 +11,21 @@ public class Garage {
 
     }
 
-    public void sellCar(String carName, Money money){
-        MyCar myCar = findCarByName(getCars(),carName);
+    public void sellCar(String carName, Money money, RaceModelling raceModelling){
+        MyCar myCar = findCarByName(raceModelling,carName);
         money.money += 150+myCar.getEngine()*100;
         cars.remove(myCar);
     }
-    public MyCar findCarByName(List<MyCar> cars, String carName){
-        for (MyCar c : cars) {
-            if(c.getCarName().equals(carName)){
-                return c;
+    public MyCar findCarByName(RaceModelling raceModelling, String carName){
+
+        for (Map.Entry garages : raceModelling.garages.entrySet()) {
+            System.out.printf("Garage name: %s\n",garages.getKey());
+            ArrayList<MyCar> cars = (ArrayList<MyCar>) garages.getValue();
+            for (MyCar c : cars) {
+                if(c.getCarName().equals(carName)){
+                    System.out.println(c);
+                    return c;
+                }
             }
         }
         return null;
@@ -32,5 +38,8 @@ public class Garage {
         }
     public void buyGarage(String newGarageName, Money money, RaceModelling raceModelling){
             raceModelling.garages.put(newGarageName,new ArrayList<MyCar>());
+    }
+    public void sellGarage(String garageName, RaceModelling raceModelling){
+            raceModelling.garages.remove(garageName);
     }
 }

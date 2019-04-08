@@ -9,7 +9,7 @@ import java.util.Map;
 public class RaceModelling implements Serializable {
     //List garages = new List();
     public Map<String,ArrayList<MyCar>> garages = new HashMap<>();
-    private int money = 900;
+    private int money = 0;
 
     public int getMoney() {
         return money;
@@ -19,4 +19,11 @@ public class RaceModelling implements Serializable {
         this.money = money;
     }
 
+    public boolean garageIsValid(String garageName, Map<String,ArrayList<MyCar>> garages) {
+        if(garages.containsKey(garageName)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -26,7 +26,6 @@ Final:
 * Data hiding - DONE
 * Firstgarage and garage egybegyúrása - DONE
 * garázsok létrehozása - DONE
+* Out of money exception - DONE
+* racemodelling enkapszuláció (ezt serializálja) - Nearly Done
 * mentse a pénzt is - 
-* Out of money exception - 
-* Race Exception - 
-* racemodelling enkapszuláció (ezt serializálja) - 

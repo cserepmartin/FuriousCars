@@ -28,7 +28,6 @@ public class Main {
         Main main = new Main();
         MainMenu mainmenu = new MainMenu(userInput,storeDesign,raceDesign,carDataDesign,garageDesign,serialization,deserialization,main,garage,money,raceModelling);
         MyCar myCar = new MyCar("",1);
-        //deserialization.deserialization(firstGarage.cars);
         if (raceModelling.garages.size()==0) {
             System.out.println("You don't have garage yet. Please buy one!");
             System.out.println("Name your first garage: ");

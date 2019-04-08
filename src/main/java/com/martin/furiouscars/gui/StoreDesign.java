@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class StoreDesign {
     Scanner scanner;
-    public void storeDesign(Garage firstGarage, Money money, Scanner scanner) throws IOException, SAXException, ParserConfigurationException {
+    public void storeDesign(Garage firstGarage, Money money, Scanner scanner, RaceModelling raceModelling) throws IOException, SAXException, ParserConfigurationException {
         boolean notQuit = true;
         Garage garage = new Garage();
         while (notQuit){
@@ -20,10 +20,10 @@ public class StoreDesign {
                 System.out.println("Select a car to upgrade: ");
                 scanner.nextLine();
                 carName = scanner.nextLine();
-                if (garage.findCarByName(firstGarage.cars, carName) == null) {
+                if (garage.findCarByName(raceModelling, carName) == null) {
                     System.out.printf("Car named %s does not exist!", carName);
                 } else {
-                    MyCar myCar = garage.findCarByName(firstGarage.cars, carName);
+                    MyCar myCar = garage.findCarByName(raceModelling, carName);
                     inWhile = false;
                 }
             }
@@ -48,7 +48,7 @@ public class StoreDesign {
                     notQuit = false;
                     break;
                 case 1:
-                    printEningeResult(store.EngineUpgrade(carName,money,garage),carName,firstGarage);
+                    printEningeResult(store.EngineUpgrade(carName,money,garage,raceModelling),carName,firstGarage, raceModelling);
                     break;
 
                 default:
@@ -56,9 +56,9 @@ public class StoreDesign {
             }
         }
     }
-    public void printEningeResult(Integer result, String carName, Garage firstGarage){
+    public void printEningeResult(Integer result, String carName, Garage firstGarage, RaceModelling raceModelling){
         Garage garage = new Garage();
-        MyCar myCar = garage.findCarByName(firstGarage.cars,carName);
+        MyCar myCar = garage.findCarByName(raceModelling,carName);
         if(result == 0){
             System.out.println("Sorry, but you don't have enough money for this!");
         } else if(result == 1){

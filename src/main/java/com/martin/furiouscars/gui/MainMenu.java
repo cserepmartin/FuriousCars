@@ -73,11 +73,11 @@ public class MainMenu {
                     System.exit(1);
                     break;
                 case 1:
-                    carDataDesign.printCarDatas(garage.cars,money,raceModelling);
+                    carDataDesign.printCarDatas(money,raceModelling);
                     break;
                 case 2:
                     try {
-                        storeDesign.storeDesign(garage,money,scanner);
+                        storeDesign.storeDesign(garage,money,scanner,raceModelling);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (SAXException e) {
@@ -91,7 +91,7 @@ public class MainMenu {
                     break;
                 case 4:
                     try {
-                        raceDesign.raceMenu(garage,scanner,money,garage);
+                        raceDesign.raceMenu(garage,scanner,money,garage,raceModelling);
                     } catch (ParserConfigurationException e) {
                         e.printStackTrace();
                     } catch (SAXException e) {

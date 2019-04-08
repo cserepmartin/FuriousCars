@@ -5,15 +5,20 @@ import java.util.Random;
 public class VisualRace extends Race {
 
     @Override
-    public int WhoIsTheWinner(String carName, Garage  garage, Money money){
-        Random random = new Random();
-        int result = random.nextInt(2)+1;
-        if(result == 2){
-            money.setMoney(money.getMoney()+1000);
-            return 0;
+    public int WhoIsTheWinner(String carName, Garage  garage, RaceModelling raceModelling) throws OutOfMoneyException {
+        if(raceModelling.getMoney()>4150){
+            System.out.println(raceModelling.getMoney());
+            Random random = new Random();
+            int result = random.nextInt(2)+1;
+            if(result == 2){
+                raceModelling.setMoney(raceModelling.getMoney()+1000);
+                return 0;
+            } else {
+                raceModelling.setMoney(raceModelling.getMoney()-100);
+                return 1;
+            }
         } else {
-            money.setMoney(money.getMoney()-100);
-            return 1;
+            throw new OutOfMoneyException("You don't have enough money for this!");
         }
     }
 }

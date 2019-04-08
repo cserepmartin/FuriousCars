@@ -6,6 +6,7 @@ import com.martin.furiouscars.methods.MyCar;
 import com.martin.furiouscars.methods.RaceModelling;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CarDataDesign {
@@ -16,14 +17,17 @@ public class CarDataDesign {
     }
 
 
-    public void printCarDatas(ArrayList<MyCar> cars, Money money, RaceModelling raceModelling){
+    public void printCarDatas(Money money, RaceModelling raceModelling){
         userInput.nextLine();
         System.out.printf("Your balance: $%s\n", money.money);
-        for (MyCar c : cars) {
-            System.out.printf("Name: %s | Engine: %s\n",c.getCarName(),c.getEngine());
+        for (Map.Entry garages : raceModelling.garages.entrySet()) {
+            System.out.printf("Garage name: %s\n",garages.getKey());
+            ArrayList<MyCar> cars = (ArrayList<MyCar>) garages.getValue();
+            for (MyCar c : cars) {
+                System.out.printf("Name: %s | Engine: %s\n", c.getCarName(), c.getEngine());
+            }
         }
         System.out.println(" ");
-        System.out.println(raceModelling.garages);
         System.out.println("Press \"ENTER\" to continue");
         userInput.nextLine();
     }
