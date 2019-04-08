@@ -28,4 +28,5 @@ Final:
 * garázsok létrehozása - DONE
 * mentse a pénzt is - 
 * Out of money exception - 
+* Race Exception - 
 * racemodelling enkapszuláció (ezt serializálja) - 
