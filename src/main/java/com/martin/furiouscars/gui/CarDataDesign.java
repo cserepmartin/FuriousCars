@@ -19,7 +19,7 @@ public class CarDataDesign {
 
     public void printCarDatas(Money money, RaceModelling raceModelling){
         userInput.nextLine();
-        System.out.printf("Your balance: $%s\n", money.money);
+        System.out.printf("Your balance: $%s\n", raceModelling.getMoney());
         for (Map.Entry garages : raceModelling.garages.entrySet()) {
             System.out.printf("Garage name: %s\n",garages.getKey());
             ArrayList<MyCar> cars = (ArrayList<MyCar>) garages.getValue();

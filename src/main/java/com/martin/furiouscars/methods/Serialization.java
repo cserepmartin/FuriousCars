@@ -11,7 +11,7 @@ public class Serialization {
         try {
             FileOutputStream fileOut = new FileOutputStream("cars.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(raceModelling.garages);
+            out.writeObject(raceModelling);
             out.close();
             fileOut.close();
         } catch (FileNotFoundException e) {

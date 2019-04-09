@@ -27,5 +27,10 @@ Final:
 * Firstgarage and garage egybegyúrása - DONE
 * garázsok létrehozása - DONE
 * Out of money exception - DONE
-* racemodelling enkapszuláció (ezt serializálja) - Nearly Done
-* mentse a pénzt is - 
+* mentse a pénzt is - DONE
+* racemodelling enkapszuláció (ezt serializálja) - DONE
+
+
+Jegyzet:
+If(van serializált fájl és jó is) akkor azzal hozza létre az 
+új racemodelling objectet, else létrehoz egy "üreset".

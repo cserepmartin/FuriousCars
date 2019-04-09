@@ -17,20 +17,20 @@ public class MainMenu {
     CarDataDesign carDataDesign;
     GarageDesign garageDesign;
     Serialization serialization;
-    Deserialization deserialization;
+    //Deserialization deserialization;
     Main main;
     Garage garage;
     Money money;
     RaceModelling raceModelling;
 
-    public MainMenu(Scanner scanner, StoreDesign storeDesign, RaceDesign raceDesign, CarDataDesign carDataDesign, GarageDesign garageDesign, Serialization serialization, Deserialization deserialization, Main main, Garage garage, Money money, RaceModelling raceModelling) {
+    public MainMenu(Scanner scanner, StoreDesign storeDesign, RaceDesign raceDesign, CarDataDesign carDataDesign, GarageDesign garageDesign, Serialization serialization/*, Deserialization deserialization*/, Main main, Garage garage, Money money, RaceModelling raceModelling) {
         this.scanner = scanner;
         this.storeDesign = storeDesign;
         this.raceDesign = raceDesign;
         this.carDataDesign = carDataDesign;
         this.garageDesign = garageDesign;
         this.serialization = serialization;
-        this.deserialization = deserialization;
+        //this.deserialization = deserialization;
         this.main = main;
         this.garage = garage;
         this.money = money;

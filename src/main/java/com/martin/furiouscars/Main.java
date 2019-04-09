@@ -3,18 +3,33 @@ package com.martin.furiouscars;
 import com.martin.furiouscars.gui.*;
 import com.martin.furiouscars.methods.*;
 
-import java.io.IOException;
-import java.io.StreamCorruptedException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Garage garage = new Garage();
         Money money = new Money();
-        RaceModelling raceModelling = new RaceModelling();
-        Deserialization deserialization = new Deserialization();
+        RaceModelling raceModelling;
+        Map<String,ArrayList<MyCar>> garages = new HashMap<>();
+        /*File save = new File("car.ser");
+        if(save.exists() && !save.isDirectory()) {
+            System.out.println("lefut az if");
+            raceModelling = new RaceModelling( garages,900);
+        } else {
+            System.out.println("nem fut le");
+            raceModelling = new RaceModelling( garages,900);
+        }*/
+        raceModelling = new RaceModelling( garages,900);
         try {
-            deserialization.deserialization(raceModelling);
+            FileInputStream fileIn = new FileInputStream("cars.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            raceModelling = (RaceModelling) in.readObject();
+            in.close();
+            fileIn.close();
         } catch (StreamCorruptedException e) {
             System.out.printf("Your save file is damaged! Error: %s \n Creating new game...\n",e.getMessage());
         } catch (IOException e) {
@@ -29,7 +44,7 @@ public class Main {
         GarageDesign garageDesign = new GarageDesign();
         Serialization serialization = new Serialization();
         Main main = new Main();
-        MainMenu mainmenu = new MainMenu(userInput,storeDesign,raceDesign,carDataDesign,garageDesign,serialization,deserialization,main,garage,money,raceModelling);
+        MainMenu mainmenu = new MainMenu(userInput,storeDesign,raceDesign,carDataDesign,garageDesign,serialization,main,garage,money,raceModelling);
         MyCar myCar = new MyCar("",1);
         if (raceModelling.garages.size()==0) {
             System.out.println("You don't have garage yet. Please buy one!");

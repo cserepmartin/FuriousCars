@@ -37,6 +37,7 @@ public class GarageDesign {
                     break;
                 case 1:
                     scanner.nextLine();
+                    System.out.println("Select a name for your new garage: ");
                     garageName = scanner.nextLine();
                     garage.buyGarage(garageName,money,raceModelling);
                     break;

@@ -12,7 +12,7 @@ public class Deserialization {
 
                 FileInputStream fileIn = new FileInputStream("cars.ser");
                 ObjectInputStream in = new ObjectInputStream(fileIn);
-                raceModelling.garages = (Map<String, ArrayList<MyCar>>) in.readObject();
+                raceModelling = (RaceModelling) in.readObject();
                 in.close();
                 fileIn.close();
     }

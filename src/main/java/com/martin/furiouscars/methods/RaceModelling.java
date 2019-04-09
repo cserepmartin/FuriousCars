@@ -19,6 +19,10 @@ public class RaceModelling implements Serializable {
         this.money = money;
     }
 
+    public RaceModelling(Map<String, ArrayList<MyCar>> garages, int money) {
+        this.garages = garages;
+        this.money = money;
+    }
 
     public boolean garageIsValid(String garageName, Map<String,ArrayList<MyCar>> garages) {
         if(garages.containsKey(garageName)){
