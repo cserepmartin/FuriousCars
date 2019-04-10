@@ -19,11 +19,11 @@ public class MainMenu {
     Serialization serialization;
     //Deserialization deserialization;
     Main main;
-    Garage garage;
+    //Garage garage;
     Money money;
     RaceModelling raceModelling;
 
-    public MainMenu(Scanner scanner, StoreDesign storeDesign, RaceDesign raceDesign, CarDataDesign carDataDesign, GarageDesign garageDesign, Serialization serialization/*, Deserialization deserialization*/, Main main, Garage garage, Money money, RaceModelling raceModelling) {
+    public MainMenu(Scanner scanner, StoreDesign storeDesign, RaceDesign raceDesign, CarDataDesign carDataDesign, GarageDesign garageDesign, Serialization serialization/*, Deserialization deserialization*/, Main main/*, Garage garage*/, Money money, RaceModelling raceModelling) {
         this.scanner = scanner;
         this.storeDesign = storeDesign;
         this.raceDesign = raceDesign;
@@ -32,7 +32,7 @@ public class MainMenu {
         this.serialization = serialization;
         //this.deserialization = deserialization;
         this.main = main;
-        this.garage = garage;
+        //this.garage = garage;
         this.money = money;
         this.raceModelling = raceModelling;
     }
@@ -47,16 +47,12 @@ public class MainMenu {
             System.out.println("     |   Furious Cars   |");
             System.out.println("     |__________________|");
             System.out.println("           0. Exit");
-            if(garage.cars.size()==1){
-                System.out.println("          1. My Car");
-            } else {
-                System.out.println("         1. My Cars");
-            }
+            System.out.println("         1. My Cars");
             System.out.println("           2. Shop");
             System.out.println("          3. Garage");
             System.out.println("           4. Race");
             System.out.println("           5. Save");
-            System.out.println("         6. New Game");
+            //System.out.println("         6. New Game");
             System.out.print("\nChoose an option: ");
             try {
                 choice = scanner.nextInt();
@@ -73,11 +69,11 @@ public class MainMenu {
                     System.exit(1);
                     break;
                 case 1:
-                    carDataDesign.printCarDatas(money,raceModelling);
+                    carDataDesign.printCarDatas(raceModelling);
                     break;
                 case 2:
                     try {
-                        storeDesign.storeDesign(garage,money,scanner,raceModelling);
+                        storeDesign.storeDesign(money,scanner,raceModelling);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (SAXException e) {
@@ -87,11 +83,11 @@ public class MainMenu {
                     }
                     break;
                 case 3:
-                    garageDesign.SellParts(scanner,garage,money,raceModelling);
+                    garageDesign.SellParts(scanner,raceModelling);
                     break;
                 case 4:
                     try {
-                        raceDesign.raceMenu(garage,scanner,money,garage,raceModelling);
+                        raceDesign.raceMenu(scanner,raceModelling);
                     } catch (ParserConfigurationException e) {
                         e.printStackTrace();
                     } catch (SAXException e) {
@@ -103,7 +99,7 @@ public class MainMenu {
                 case 5:
                     serialization.serialization(raceModelling);
                     break;
-                case 6:
+                /*case 6:
                     System.out.println("Are you sure about that? | yes or no |");
                     scanner.nextLine();
                     String inputString = scanner.nextLine();
@@ -116,6 +112,7 @@ public class MainMenu {
                         System.out.println("Okay!");
                     }
                     break;
+                */
                 default:
                     System.out.println("No such option: " + choice);
                     break;

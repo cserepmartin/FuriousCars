@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Garage garage = new Garage();
         Money money = new Money();
         RaceModelling raceModelling;
         Map<String,ArrayList<MyCar>> garages = new HashMap<>();
@@ -22,7 +21,11 @@ public class Main {
             raceModelling = (RaceModelling) in.readObject();
             in.close();
             fileIn.close();
-        } catch (StreamCorruptedException e) {
+
+        } catch (InvalidClassException e){
+            System.out.println("");
+        }
+        catch (StreamCorruptedException e) {
             System.out.printf("Your save file is damaged! Error: %s \n Creating new game...\n",e.getMessage());
         } catch (FileNotFoundException e) {
             System.out.println("Welcome new little racer!");
@@ -40,20 +43,27 @@ public class Main {
         GarageDesign garageDesign = new GarageDesign();
         Serialization serialization = new Serialization();
         Main main = new Main();
-        MainMenu mainmenu = new MainMenu(userInput,storeDesign,raceDesign,carDataDesign,garageDesign,serialization,main,garage,money,raceModelling);
-        MyCar myCar = new MyCar("",1);
-        if (raceModelling.garages.size()==0) {
+        MainMenu mainmenu = new MainMenu(userInput,storeDesign,raceDesign,carDataDesign,garageDesign,serialization,main,money,raceModelling);
+        //MyCar myCar = new MyCar("",1);
+        if (!raceModelling.hasGarages()) {
             System.out.println("You don't have garage yet. Please buy one!");
             System.out.println("Name your first garage: ");
             String newGarageName = userInput.nextLine();
-            garage.buyGarage(newGarageName,money,raceModelling);
+            try {
+                raceModelling.addGarage(newGarageName);
+            } catch (RaceModellingException e) {
+                System.out.println(e.getMessage());
+            }
+
             System.out.println("Now buy your first car!");
             System.out.println("Name your first car: ");
             String newCarName = userInput.nextLine();
-            raceModelling.garages.get(newGarageName).add(new MyCar(newCarName,1));
-            mainmenu.mainMenu();
-            } else {
-            mainmenu.mainMenu();
+
+            //raceModelling.addCarToGarage(newCarName, newGarageName);
+            // or
+            Garage garage = raceModelling.findByName(newGarageName);
+            garage.buyCar(newCarName,raceModelling,newGarageName);
         }
+        mainmenu.mainMenu();
     }
 }

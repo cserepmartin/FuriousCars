@@ -1,16 +1,14 @@
 package com.martin.furiouscars.gui;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.martin.furiouscars.methods.Garage;
-import com.martin.furiouscars.methods.Money;
-import com.martin.furiouscars.methods.RaceModelling;
+import com.martin.furiouscars.methods.*;
 
 public class GarageDesign {
     Scanner scanner;
-    Garage garage = new Garage();
-    public void SellParts(Scanner scanner, Garage firstGarage, Money money, RaceModelling raceModelling){
+    public void SellParts(Scanner scanner, RaceModelling raceModelling){
         boolean notQuit = true;
         while (notQuit){
             String garageName = null;
@@ -21,9 +19,9 @@ public class GarageDesign {
             System.out.println("     |_________________|");
             System.out.println("          0. Leave");
             System.out.println("        1. Buy Garage");
-            System.out.println("        2. Sell Garage");
-            System.out.println("        3. Buy Car");
-            System.out.println("       4. Sell Car\n");
+            //System.out.println("        2. Sell Garage");
+            System.out.println("        2. Buy Car");
+            System.out.println("       3. Sell Car\n");
             System.out.print("Choose an option: ");
             try {
                 choice = scanner.nextInt();
@@ -39,34 +37,49 @@ public class GarageDesign {
                     scanner.nextLine();
                     System.out.println("Select a name for your new garage: ");
                     garageName = scanner.nextLine();
-                    garage.buyGarage(garageName,money,raceModelling);
+                    try {
+                        raceModelling.addGarage(garageName);
+                    } catch (RaceModellingException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
-                case 2:
+                /*case 2:
                     scanner.nextLine();
                     garageName = scanner.nextLine();
                     garage.sellGarage(garageName,raceModelling);
                     break;
-                case 3:
+                 */
+                case 2:
                     scanner.nextLine();
                     System.out.println("Select a garage!");
                     garageName = scanner.nextLine();
-                    if (raceModelling.garages.containsKey(garageName)) {
+                    if (raceModelling.garageIsExist(garageName)) {
+                        Garage garage = raceModelling.findByName(garageName);
                         System.out.printf("Select a name for your new car: \n");
                         scanner.nextLine();
                         String newCarName = scanner.nextLine();
                         System.out.println(newCarName);
-                        garage.buyCar(newCarName, money, raceModelling, garageName);
+                        garage.buyCar(newCarName, raceModelling, garageName);
                         printBuyCar(newCarName);
                     } else {
                         System.out.printf("Garage named \"%s\" is not found!",garageName);
                     }
                     break;
-                case 4:
+                case 3:
                     scanner.nextLine();
-                    System.out.printf("Select a name for your new car: \n");
-                    String carNameForSale = scanner.nextLine();
-                    garage.sellCar(carNameForSale,money,raceModelling);
-                    printSellCar(carNameForSale,money);
+                    System.out.println("Select a garage!");
+                    garageName = scanner.nextLine();
+                    if (raceModelling.garageIsExist(garageName)) {
+                        Garage garage = raceModelling.findByName(garageName);
+                        System.out.printf("Select a name for your new car: \n");
+                        scanner.nextLine();
+                        String carName = scanner.nextLine();
+                        System.out.println(carName);
+                        garage.sellCar(carName, raceModelling);
+                        printSellCar(carName,raceModelling.getMoney());
+                    } else {
+                        System.out.printf("Garage named \"%s\" is not found!",garageName);
+                    }
                     break;
                 default:
                     System.out.println("Please type a correct number!");
@@ -76,8 +89,8 @@ public class GarageDesign {
     public void printBuyCar(String carName){
         System.out.printf("Your new car named %s is on the garage now.\n",carName);
     }
-    public void printSellCar(String carName, Money money){
-        System.out.printf("%s is sold. Your balance: %s\n",carName,money.money);
+    public void printSellCar(String carName, Integer money){
+        System.out.printf("%s is sold. Your balance: %s\n",carName,money);
     }
 
 }

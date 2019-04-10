@@ -5,7 +5,7 @@ import java.util.Random;
 public class VisualRace extends Race {
 
     @Override
-    public int WhoIsTheWinner(String carName, Garage  garage, RaceModelling raceModelling) throws OutOfMoneyException {
+    public int WhoIsTheWinner(MyCar car, RaceModelling raceModelling) throws OutOfMoneyException {
         if(raceModelling.getMoney()>4150){
             System.out.println(raceModelling.getMoney());
             Random random = new Random();

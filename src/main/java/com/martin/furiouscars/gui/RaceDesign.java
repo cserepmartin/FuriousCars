@@ -10,12 +10,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.SortedMap;
 
 public class RaceDesign {
     Scanner scanner;
 
-    public void raceMenu(Garage firstGarage, Scanner scanner, Money money, Garage garage, RaceModelling raceModelling) throws ParserConfigurationException, SAXException, IOException {
-
+    public void raceMenu(Scanner scanner, RaceModelling raceModelling) throws ParserConfigurationException, SAXException, IOException {
+        String garageName = null;
         boolean notQuit = true;
         while (notQuit){
             boolean inWhile = true;
@@ -44,42 +45,46 @@ public class RaceDesign {
                     while (inWhile) {
                         System.out.println("Select a garage: ");
                         scanner.nextLine();
-                        String garageName = scanner.nextLine();
-                        if(raceModelling.garages.containsKey(garageName)){
-                            if(garage.findCarByName(raceModelling,carName)==null){
+                        garageName = scanner.nextLine();
+                        if(raceModelling.garageIsExist(garageName)){
+                            Garage garage = raceModelling.findByName(garageName);
+                            carName = scanner.nextLine();
+                            if(garage.carIsExists(carName)){
                                 System.out.printf("Car named %s does not exist!", carName);
                             } else {
-                                MyCar myCar = garage.findCarByName(raceModelling, carName);
                                 inWhile = false;
                             }
                         }
                     }
-                        DragRace dragRace = new DragRace();
                     try {
-                        printRaceResult(dragRace.WhoIsTheWinner(carName,firstGarage,raceModelling),money);
+                        printRaceResult(raceModelling.race(RaceType.Drag, garageName, carName),raceModelling);
                     } catch (OutOfMoneyException e) {
                         e.printStackTrace();
+                    } catch (RaceModellingException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case 2:
-
                     while (inWhile) {
-                        System.out.println("Select a car to race: ");
+                        System.out.println("Select a garage: ");
                         scanner.nextLine();
-                        carName = scanner.nextLine();
-                        if(garage.findCarByName(raceModelling,carName)==null){
-                            System.out.printf("Car named %s does not exist!", carName);
-                        } else {
-                            MyCar myCar = garage.findCarByName(raceModelling, carName);
-                            inWhile = false;
+                        garageName = scanner.nextLine();
+                        if(raceModelling.garageIsExist(garageName)){
+                            Garage garage = raceModelling.findByName(garageName);
+                            carName = scanner.nextLine();
+                            if(garage.carIsExists(carName)){
+                                System.out.printf("Car named %s does not exist!", carName);
+                            } else {
+                                inWhile = false;
+                            }
                         }
                     }
-                        VisualRace visualRace = new VisualRace();
                     try {
-                        printVRaceResult(visualRace.WhoIsTheWinner(carName,firstGarage,raceModelling),money);
+                        printRaceResult(raceModelling.race(RaceType.Visual, garageName, carName),raceModelling);
                     } catch (OutOfMoneyException e) {
-                        System.out.printf("Error: %s\n",e.getMessage());
-                        continue;
+                        System.out.println(e.getMessage());
+                    } catch (RaceModellingException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 default:
@@ -87,25 +92,17 @@ public class RaceDesign {
             }
         }
     }
-    public void printRaceResult(Integer result,Money money){
+
+    public void printRaceResult(Integer result,RaceModelling raceModelling){
         if(result == 0){
             System.out.println("You win!");
-            System.out.printf("Current balance: $%s\n", money.money);
+            System.out.printf("Current balance: $%s\n", raceModelling.getMoney());
         } else if(result == 1){
             System.out.println("You lose!");
-            System.out.printf("Current balance: $%s\n", money.money);
+            System.out.printf("Current balance: $%s\n", raceModelling.getMoney());
         } else if(result == 2){
             System.out.println("It's a draw!");
         }
     }
-    public void printVRaceResult(Integer result,Money money) {
 
-        if (result == 0) {
-            System.out.println("You win!");
-            System.out.printf("Current balance: $%s\n", money.money);
-        } else if (result == 1){
-            System.out.println("You lose!");
-            System.out.printf("Current balance: $%s\n", money.money);
-        }
-    }
 }
