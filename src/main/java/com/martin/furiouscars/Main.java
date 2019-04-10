@@ -44,7 +44,6 @@ public class Main {
         Serialization serialization = new Serialization();
         Main main = new Main();
         MainMenu mainmenu = new MainMenu(userInput,storeDesign,raceDesign,carDataDesign,garageDesign,serialization,main,money,raceModelling);
-        //MyCar myCar = new MyCar("",1);
         if (!raceModelling.hasGarages()) {
             System.out.println("You don't have garage yet. Please buy one!");
             System.out.println("Name your first garage: ");
