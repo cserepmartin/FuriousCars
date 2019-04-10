@@ -15,14 +15,6 @@ public class Main {
         Money money = new Money();
         RaceModelling raceModelling;
         Map<String,ArrayList<MyCar>> garages = new HashMap<>();
-        /*File save = new File("car.ser");
-        if(save.exists() && !save.isDirectory()) {
-            System.out.println("lefut az if");
-            raceModelling = new RaceModelling( garages,900);
-        } else {
-            System.out.println("nem fut le");
-            raceModelling = new RaceModelling( garages,900);
-        }*/
         raceModelling = new RaceModelling( garages,900);
         try {
             FileInputStream fileIn = new FileInputStream("cars.ser");
@@ -32,7 +24,11 @@ public class Main {
             fileIn.close();
         } catch (StreamCorruptedException e) {
             System.out.printf("Your save file is damaged! Error: %s \n Creating new game...\n",e.getMessage());
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
+            System.out.println("Welcome new little racer!");
+            e.getMessage();
+        }
+        catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
