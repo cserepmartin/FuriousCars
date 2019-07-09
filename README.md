@@ -34,13 +34,3 @@ Final:
 Jegyzet:
 If(van serializált fájl és jó is) akkor azzal hozza létre az 
 új racemodelling objectet, else létrehoz egy "üreset".
-
-
-PA:
-* Exception handling (checked unchecked)
-* enkapszuláció
-* öröklődés
-* polimorfizmus
-* override
-* overload
-* láthatósági módosítók használata
